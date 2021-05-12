@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import Navbar from './Navbar';
+import Header from './Header';
 
 class App extends React.Component {
  
@@ -22,7 +22,8 @@ class Home extends React.Component {
   render()  {
     return (
       <div>
-        <Navbar></Navbar>
+        <Header></Header>
+        <Link to="/tableau-de-jp-baur">page surprise</Link>
       </div>
     );
   }
