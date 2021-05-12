@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import '../styles/App.css';
+import Navbar from './Navbar';
 
 class App extends React.Component {
  
@@ -22,8 +22,7 @@ class Home extends React.Component {
   render()  {
     return (
       <div>
-        <h2>Home</h2>
-        <Link to="/tableau-de-jp-baur">page surprise</Link>
+        <Navbar></Navbar>
       </div>
     );
   }
