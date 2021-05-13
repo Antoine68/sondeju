@@ -1,10 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './../styles/header.css';
 
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 import 'bootstrap-css-only/css/bootstrap.min.css'; 
 import 'mdbreact/dist/css/mdb.css';
 import { MDBBtn } from "mdbreact";
+import './../styles/header.css';
 
 import React, { Fragment } from "react";
 
@@ -13,12 +13,12 @@ import React, { Fragment } from "react";
 export default class Header extends React.Component {
   render()  {
     return (
-      <header class="container mw-100 bg-white shadow-lg py-4 inline m-0 p-0">
+      <header class="container mw-100 bg-white shadow-lg py-3 inline m-0 p-0">
         <div class="row">
 
           <div class="col-lg-1"></div>
 
-          <a class="col-lg-2 mt-2 text-center" href="#">
+          <a class="col-lg-2 mt-3 text-center" href="#">
               <Logo></Logo>
           </a>
 
@@ -26,7 +26,7 @@ export default class Header extends React.Component {
             <Searchbar></Searchbar>
           </div>
 
-          <div class="col-lg-2 text-center">
+          <div class="col-lg-2 mt-2 text-center">
             <ButtonPage></ButtonPage>
           </div>
 
@@ -49,11 +49,11 @@ const Logo = () => {
 const Searchbar = () => {
   return (
     <Fragment>
-      <div class="input-group rounded mt-2">
-        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <span class="input-group-text border-0" id="search-addon">
-          <i class="fas fa-search"></i>
-        </span>
+      <div class="input-group md-form form-sm form-2">
+        <input class="form-control my-0 red-border" type="text" placeholder="Je cherche une étude" aria-label="Search"></input>
+        <div class="input-group-append">
+          <span class="input-group-text indigo darken-3" id="basic-text1"><i class="fas fa-search text-white" aria-hidden="true"></i></span>
+        </div>
       </div>
     </Fragment>
   );
@@ -62,9 +62,10 @@ const Searchbar = () => {
 const ButtonPage = () => {
   return (
     <Fragment>
-      <MDBBtn type="button" gradient="blue">
-                Mon compte
-      </MDBBtn>
+      <button type="button" class="btn btn-outline-info button-account" data-mdb-ripple-color="dark">
+      <i class="fas fa-user mr-1"></i>
+        Mon compte
+      </button>
     </Fragment>
   );
 }
