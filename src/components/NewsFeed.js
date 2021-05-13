@@ -7,6 +7,7 @@ import './../styles/newsFeed.css';
 import 'react-dropdown/style.css';
 import { Link } from "react-router-dom";
 
+
 import React from "react";
 
 export default class NewsFeed extends React.Component {
@@ -16,7 +17,7 @@ export default class NewsFeed extends React.Component {
           <div class="row mw-100 m-0 p-0">
               <div class="col-lg-3"></div>
               <div class="col-lg-6 card">
-                
+              
                 <div class="row">
 
                 </div>
