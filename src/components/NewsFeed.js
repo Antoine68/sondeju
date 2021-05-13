@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 import 'bootstrap-css-only/css/bootstrap.min.css'; 
 import 'mdbreact/dist/css/mdb.css';
-import './../styles/newsFeed.css';
+import './../styles/NewsFeed.css';
 import 'react-dropdown/style.css';
 import { Link } from "react-router-dom";
 
@@ -19,7 +19,7 @@ export default class NewsFeed extends React.Component {
               <div class="col-lg-6 card">
               
                 <div class="row">
-
+                
                 </div>
                 <Link to="/tableau-de-jp-baur">page surprise</Link>
               </div>

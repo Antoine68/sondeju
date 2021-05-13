@@ -4,11 +4,12 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css'; 
 import 'mdbreact/dist/css/mdb.css';
 import { MDBBtn } from "mdbreact";
-import './../styles/header.css';
+import './../styles/Header.css';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 import React, { Fragment } from "react";
+import { Link } from 'react-router-dom';
 
 export default class Header extends React.Component {
   render()  {
@@ -86,10 +87,12 @@ const Searchbar = () => {
 const ButtonPage = () => {
   return (
     <Fragment>
-      <button type="button" class="btn btn-outline-info button-account" data-mdb-ripple-color="dark">
-      <i class="fas fa-user mr-1"></i>
-        Mon compte
-      </button>
+    <Link to="/compte">
+        <button type="button" class="btn btn-outline-info button-account" data-mdb-ripple-color="dark">
+        <i class="fas fa-user mr-1"></i>
+          Mon compte
+        </button>
+      </Link>
     </Fragment>
   );
 }
