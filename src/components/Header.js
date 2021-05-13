@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css'; 
 import 'mdbreact/dist/css/mdb.css';
 import { MDBBtn } from "mdbreact";
-import './../styles/Header.css';
+import './../styles/header.css';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
