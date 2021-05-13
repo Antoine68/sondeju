@@ -56,7 +56,7 @@ export default class NewsFeed extends React.Component {
               <div class="card-body">
                 <h5 class="card-title">Titre du sondage</h5>
                 <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary gradient-custom">Consulter</button>
+                <button href="#" class="btn btn-primary bg-button">Consulter</button>
               </div>
               <div class="card-footer text-muted bg-white">
                 Durée : 2 min
@@ -71,7 +71,7 @@ export default class NewsFeed extends React.Component {
               <div class="card-body">
                 <h5 class="card-title">Titre du sondage</h5>
                 <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary gradient-custom">Consulter</button>
+                <button href="#" class="btn btn-primary bg-button">Consulter</button>
               </div>
               <div class="card-footer text-muted bg-white">
                 Durée : 2 min
@@ -86,7 +86,7 @@ export default class NewsFeed extends React.Component {
               <div class="card-body">
                 <h5 class="card-title">Titre du sondage</h5>
                 <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary gradient-custom">Consulter</button>
+                <button href="#" class="btn btn-primary bg-button">Consulter</button>
               </div>
               <div class="card-footer text-muted bg-white">
                 Durée : 2 min
@@ -101,7 +101,7 @@ export default class NewsFeed extends React.Component {
               <div class="card-body">
                 <h5 class="card-title">Titre du sondage</h5>
                 <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary gradient-custom">Consulter</button>
+                <button href="#" class="btn btn-primary bg-button">Consulter</button>
               </div>
               <div class="card-footer text-muted bg-white">
                 Durée : 2 min
@@ -116,7 +116,7 @@ export default class NewsFeed extends React.Component {
               <div class="card-body">
                 <h5 class="card-title">Titre du sondage</h5>
                 <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary gradient-custom">Consulter</button>
+                <button href="#" class="btn btn-primary bg-button">Consulter</button>
               </div>
               <div class="card-footer text-muted bg-white">
                 Durée : 2 min
@@ -131,7 +131,7 @@ export default class NewsFeed extends React.Component {
               <div class="card-body">
                 <h5 class="card-title">Titre du sondage</h5>
                 <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary gradient-custom">Consulter</button>
+                <button href="#" class="btn btn-primary bg-button">Consulter</button>
               </div>
               <div class="card-footer text-muted bg-white">
                 Durée : 2 min
@@ -146,7 +146,22 @@ export default class NewsFeed extends React.Component {
               <div class="card-body">
                 <h5 class="card-title">Titre du sondage</h5>
                 <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary gradient-custom">Consulter</button>
+                <button href="#" class="btn btn-primary bg-button">Consulter</button>
+              </div>
+              <div class="card-footer text-muted bg-white">
+                Durée : 2 min
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12 mt-3 mb-3">
+            <div class="card text-center">
+              <div class="card-header bg-white">
+                Catégorie
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Titre du sondage</h5>
+                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
+                <button href="#" class="btn btn-primary bg-button">Consulter</button>
               </div>
               <div class="card-footer text-muted bg-white">
                 Durée : 2 min

@@ -20,8 +20,8 @@ export default class Content extends React.Component {
     return (
         <div class="container mw-100 m-0 p-0 mt-3">
             <div class="row mw-100 m-0 p-0">
-              <div class="col-lg-3"></div>
-              <div class="col-lg-6 card">
+              <div class="col-lg-2"></div>
+              <div class="col-lg-8 card">
                 {this.props.children}
               </div>
             </div>
