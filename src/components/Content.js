@@ -18,7 +18,7 @@ export default class Content extends React.Component {
 
   render()  {
     return (
-        <div class="container mw-100 m-0 p-0">
+        <div class="container mw-100 m-0 p-0 mt-3">
             <div class="row mw-100 m-0 p-0">
               <div class="col-lg-3"></div>
               <div class="col-lg-6 card">
