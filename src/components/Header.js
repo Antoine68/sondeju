@@ -44,12 +44,17 @@ export default class Header extends React.Component {
 
               <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center" href="#">
               <i class="fas fa-plus blue-color fa-1x mr-2" aria-hidden="true"></i>
-                <div class="text color-grey hover-texte">créer un sondage</div>
+                <div class="text color-grey hover-texte">Créer un sondage</div>
               </a>
 
               <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center" href="#">
               <i class="fas fa-atlas blue-color fa-1x mr-2" aria-hidden="true"></i>
-                <div class="text color-grey hover-texte">accéder au tutoriel</div>
+                <div class="text color-grey hover-texte">Accéder au tutoriel</div>
+              </a>
+              
+              <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center" href="#">
+              <i class="fas fa-random blue-color fa-1x mr-2" aria-hidden="true"></i>
+                <div class="text color-grey hover-texte">Sondage au hasard</div>
               </a>
 
             </div>
