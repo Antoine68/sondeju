@@ -22,13 +22,14 @@ export default class Header extends React.Component {
               <Logo></Logo>
           </a>
 
-
           <div class="col-lg-6 col-md-12 text-left">
             <Searchbar></Searchbar>
           </div>
 
-          <div class="col-lg-3 col-md-12 mt-3 text-center border-left">
-            <ButtonPage></ButtonPage>
+          <div class="col-lg-3 col-md-12 border-left">
+            <div class="mt-3 text-center">
+              <ButtonPage></ButtonPage>
+            </div>
           </div>
 
         </div>
@@ -42,7 +43,7 @@ export default class Header extends React.Component {
 
               <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center" href="#">
               <i class="fas fa-plus blue-color fa-1x mr-2" aria-hidden="true"></i>
-                <div class="text color-grey hover-texte">crée un sondage</div>
+                <div class="text color-grey hover-texte">créer un sondage</div>
               </a>
 
               <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center" href="#">

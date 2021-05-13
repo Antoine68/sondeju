@@ -16,56 +16,14 @@ export default class NewsFeed extends React.Component {
           <div class="row mw-100 m-0 p-0">
               <div class="col-lg-3"></div>
               <div class="col-lg-6 card">
-              <Link to="/tableau-de-jp-baur">page surprise</Link>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
-              <p>bonjour</p>
+                
+                <div class="row">
+
+                </div>
+                <Link to="/tableau-de-jp-baur">page surprise</Link>
               </div>
               <div class="col-lg-3"></div>
           </div>
-        
       </div>
     );
   }
