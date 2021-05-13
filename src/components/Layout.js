@@ -10,8 +10,9 @@ import { Link } from "react-router-dom";
 import React, { Fragment } from "react";
 import Header from './Header';
 import Footer from './Footer';
+import Content from './Content';
 
-export default class NewsFeed extends React.Component {
+export default class Layout extends React.Component {
     
     constructor(props) {
         super(props);
@@ -19,14 +20,12 @@ export default class NewsFeed extends React.Component {
     
   render()  {
     return (
-        <Fragment>
-            <div class="index2 shadow-lg mb-1">
-                <Header></Header>
-            </div>
-            <div class="index1">
-                {this.props.children}
-            </div>
-            <Footer></Footer>
+      <Fragment>
+          <Header></Header>
+          <Content>
+            {this.props.children}
+          </Content>
+          <Footer></Footer>
       </Fragment>
     );
   }
