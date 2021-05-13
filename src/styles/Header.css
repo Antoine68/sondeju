@@ -41,3 +41,9 @@ border: 1px solid #0F056B;
     color :#0F056B;
     font-weight: bold;
 }
+
+.logo-container {
+    margin-top: 0 !important;
+    display: flex;
+    align-items: center;
+}

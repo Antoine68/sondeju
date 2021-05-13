@@ -19,9 +19,9 @@ export default class Header extends React.Component {
 
           <div class="col-lg-1 col-md-0"></div>
 
-          <a class="col-lg-2 col-md-12 mt-3 text-center" href="#">
+          <div class="col-lg-2 col-md-12 mt-3 text-center logo-container">
               <Logo></Logo>
-          </a>
+          </div>
 
           <div class="col-lg-6 col-md-12 text-left">
             <Searchbar></Searchbar>
@@ -66,7 +66,9 @@ export default class Header extends React.Component {
 const Logo = () => {
   return (
     <Fragment>
-      <img src="Sondeju_logo.png" width="150" height="40" class="d-inline-block align-top right-line" alt=""></img>
+      <Link to="/">
+        <img src="Sondeju_logo.png" width="150" height="40" class="d-inline-block align-top right-line" alt=""></img>
+      </Link>
     </Fragment>
   );
 }
