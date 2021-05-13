@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import Header from './Header';
+import NewsFeed from "./NewsFeed";
+import './../styles/App.css';
 
 class App extends React.Component {
  
@@ -22,8 +24,8 @@ class Home extends React.Component {
   render()  {
     return (
       <div>
-        <Header></Header>
-        <Link to="/tableau-de-jp-baur">page surprise</Link>
+        <div class="index2 shadow-lg mb-1"><Header></Header></div>
+        <div class="index1"><NewsFeed></NewsFeed></div>
       </div>
     );
   }

@@ -5,16 +5,16 @@ import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 import { MDBBtn } from "mdbreact";
 import './../styles/header.css';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 import React, { Fragment } from "react";
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 export default class Header extends React.Component {
   render()  {
     return (
-      <header class="container mw-100 py-2 inline m-0 p-0">
-        <div class="row bg-white">
+      <header class="container mw-100 m-0 p-0">
+        <div class="row bg-white m-0">
 
           <div class="col-lg-1 col-md-0"></div>
 
@@ -23,7 +23,7 @@ export default class Header extends React.Component {
           </a>
 
 
-          <div class="col-lg-6 col-md-12 text-center">
+          <div class="col-lg-6 col-md-12 text-left">
             <Searchbar></Searchbar>
           </div>
 
@@ -33,27 +33,28 @@ export default class Header extends React.Component {
 
         </div>
 
-        <div class="row bg-grey shadow-bottom">
+        <div class="row bg-grey shadow-bottom mw-100 m-0 p-0 ">
 
           <div class="col-lg-3 col-md-0"></div>
 
           <div class="col-lg-6 col-md-12 text-center">
             <div class="row">
 
-              <a class="ml-5 col-lg-3 text-left mt-2 mb-2 d-flex align-items-center" href="#">
-              <i class="fas fa-plus blue-color fa-2x mr-2" aria-hidden="true"></i>
-                <div class="text color-grey">crée un sondage</div>
+              <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center" href="#">
+              <i class="fas fa-plus blue-color fa-1x mr-2" aria-hidden="true"></i>
+                <div class="text color-grey hover-texte">crée un sondage</div>
               </a>
 
-              <a class="ml-5 col-lg-3 text-left mt-2 mb-2 d-flex align-items-center" href="#">
-              <i class="fas fa-atlas blue-color fa-2x mr-2" aria-hidden="true"></i>
-                <div class="text color-grey">accéder au tutoriel</div>
+              <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center" href="#">
+              <i class="fas fa-atlas blue-color fa-1x mr-2" aria-hidden="true"></i>
+                <div class="text color-grey hover-texte">accéder au tutoriel</div>
               </a>
 
             </div>
           </div>
           
-          <div class="col-lg-3 col-md-0"></div>
+          <div class="col-lg-3 col-md-0 m-0 p-0"></div>
+
         </div>
       </header>
     );
