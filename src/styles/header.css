@@ -1,11 +1,25 @@
 .button-account {
-    background-color: rgb(25, 118, 210);
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 3em;
+    border-color: white;
+    border-radius: 3em !important;
+      /* fallback for old browsers */
+  background: #589bf3;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(88, 155, 243, 0.5), rgba(36, 86, 174, 0.5));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(88, 155, 243, 0.5), rgba(36, 86, 174, 0.5))
 }
 
 .button-account:hover {
-    background-color: rgb(25, 118, 10);
+    color: white !important;
+    font-weight: bold;
+  /* fallback for old browsers */
+  background: #6a85b6;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(106, 133, 182, 0.5), rgba(186, 200, 224, 0.5));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(106, 133, 182, 0.5), rgba(186, 200, 224, 0.5))
 }
