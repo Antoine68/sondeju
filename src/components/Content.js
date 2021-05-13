@@ -24,8 +24,6 @@ export default class Content extends React.Component {
               <div class="col-lg-6 card">
                 {this.props.children}
               </div>
-              <div class="row mw-100 m-0 p-0">
-              </div>
             </div>
             <div class="row">
             </div>
