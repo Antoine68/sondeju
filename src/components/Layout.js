@@ -20,13 +20,17 @@ export default class Layout extends React.Component {
     
   render()  {
     return (
-      <Fragment>
-          <Header></Header>
-          <Content>
-            {this.props.children}
-          </Content>
-          <Footer></Footer>
-      </Fragment>
+    <Fragment>
+      <div class="index2 shadow-lg mb-1">
+        <Header></Header>
+      </div>
+      <div class="index1">
+        <Content>
+          {this.props.children}
+        </Content>
+      </div>
+      <Footer></Footer>
+    </Fragment>
     );
   }
 }
