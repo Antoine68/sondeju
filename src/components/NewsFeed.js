@@ -8,6 +8,7 @@ import 'react-dropdown/style.css';
 import { Link } from "react-router-dom";
 import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { MDBBtn } from "mdbreact";
 
 import React from "react";
 
@@ -46,9 +47,114 @@ export default class NewsFeed extends React.Component {
           </div>
           <div class="col-lg-3"></div>
         </div>
-        <div class="row mw-100 m-0 p-0">
-        <Link to="/tableau-de-jp-baur">page surprise</Link>
+        <div class="row mw-100 m-0 p-0 mt-5">
+          <div class="col-lg-4 col-md-12 mt-3 mb-3">
+            <div class="card text-center">
+              <div class="card-header bg-white">
+                Catégorie
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Titre du sondage</h5>
+                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
+                <button href="#" class="btn btn-primary gradient-custom">Consulter</button>
+              </div>
+              <div class="card-footer text-muted bg-white">
+                Durée : 2 min
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12 mt-3 mb-3">
+            <div class="card text-center">
+              <div class="card-header bg-white">
+                Catégorie
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Titre du sondage</h5>
+                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
+                <button href="#" class="btn btn-primary gradient-custom">Consulter</button>
+              </div>
+              <div class="card-footer text-muted bg-white">
+                Durée : 2 min
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12 mt-3 mb-3">
+            <div class="card text-center">
+              <div class="card-header bg-white">
+                Catégorie
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Titre du sondage</h5>
+                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
+                <button href="#" class="btn btn-primary gradient-custom">Consulter</button>
+              </div>
+              <div class="card-footer text-muted bg-white">
+                Durée : 2 min
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12 mt-3 mb-3">
+            <div class="card text-center">
+              <div class="card-header bg-white">
+                Catégorie
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Titre du sondage</h5>
+                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
+                <button href="#" class="btn btn-primary gradient-custom">Consulter</button>
+              </div>
+              <div class="card-footer text-muted bg-white">
+                Durée : 2 min
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12 mt-3 mb-3">
+            <div class="card text-center">
+              <div class="card-header bg-white">
+                Catégorie
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Titre du sondage</h5>
+                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
+                <button href="#" class="btn btn-primary gradient-custom">Consulter</button>
+              </div>
+              <div class="card-footer text-muted bg-white">
+                Durée : 2 min
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12 mt-3 mb-3">
+            <div class="card text-center">
+              <div class="card-header bg-white">
+                Catégorie
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Titre du sondage</h5>
+                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
+                <button href="#" class="btn btn-primary gradient-custom">Consulter</button>
+              </div>
+              <div class="card-footer text-muted bg-white">
+                Durée : 2 min
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12 mt-3 mb-3">
+            <div class="card text-center">
+              <div class="card-header bg-white">
+                Catégorie
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Titre du sondage</h5>
+                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
+                <button href="#" class="btn btn-primary gradient-custom">Consulter</button>
+              </div>
+              <div class="card-footer text-muted bg-white">
+                Durée : 2 min
+              </div>
+            </div>
+          </div>
         </div>
+        <Link to="/tableau-de-jp-baur">page surprise</Link>
       </div>
     );
   }
