@@ -179,7 +179,6 @@ export default class NewsFeed extends React.Component {
         <div class="text-center mt-2 mb-2">
           <Pagination showSizeChanger onShowSizeChange={onShowSizeChange} defaultCurrent={1} total={35}/>
         </div>
-        <Link to="/tableau-de-jp-baur">page surprise</Link>
       </div>
     );
   }
