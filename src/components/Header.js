@@ -44,7 +44,7 @@ export default class Header extends React.Component {
 
               <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center" href="#">
               <i class="fas fa-plus blue-color fa-1x mr-2" aria-hidden="true"></i>
-                <div class="text color-grey hover-texte">Créer un sondage</div>
+                <Link to="/creer-sondage"><div class="text color-grey hover-texte">Créer un sondage</div></Link>
               </a>
 
               <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center" href="#">
