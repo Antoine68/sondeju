@@ -45,7 +45,7 @@ export default class NewsFeed extends React.Component {
           <div class="col-lg-8">
             <h2 class="ml-5">Les derniers sondages</h2>
           </div>
-          <div class="col-lg-4 col-md-12 text-center">
+          <div class="col-lg-4 col-md-12 text-center mt-3">
             <Dropdown overlay={menu}>
               <a className="ant-dropdown-link font-weight-bold blue-color" onClick={e => e.preventDefault()}>
                 Choisir une catégorie <DownOutlined />
