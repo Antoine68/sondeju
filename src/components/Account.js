@@ -28,6 +28,7 @@ export default class AccountContent extends React.Component {
         <div class="text-center">
           <Link to="/compte">
             <button type="button" class="btn btn-outline-info button-account" data-mdb-ripple-color="dark">
+            <i class="fas fa-save mr-1"></i>
               Enregistrer
             </button>
           </Link>
@@ -96,7 +97,7 @@ class FormAccount extends React.Component{
   }
 
   render (){
-    return <div class="container">
+    return <div class="container mt-5 mb-5">
               <div class="form-group row">
                 <div class="row col-lg-2 col-sm-12 col-form-label">
                   <label htmlFor="pseudo">Pseudonyme* :</label>
@@ -111,7 +112,7 @@ class FormAccount extends React.Component{
                 </div>
                 <input type="text" id="nom" name="nom" class="form-control col-lg-4 col-sm-12" value={this.state.nom} onChange={this.handleChange}></input>
                 <div class="row col-lg-2 col-sm-12 col-form-label ml-3">
-                  <label htmlFor="prenom">Prenom :</label>
+                  <label htmlFor="prenom">Prénom :</label>
                 </div>
                 <input type="text" id="prenom" name="prenom" class="form-control col-lg-4 col-sm-12" value={this.state.prenom} onChange={this.handleChange}></input>
               </div>
@@ -125,7 +126,7 @@ class FormAccount extends React.Component{
 
               <div class="form-group row">
                 <div class="row col-lg-2 col-sm-12 col-form-label">
-                  <label htmlFor="age">Age* :</label>
+                  <label htmlFor="age">Âge* :</label>
                 </div>
                 <input type="number" id="age" name="age" class="form-control col-lg-10 col-sm-12" value={this.state.age} onChange={this.handleChange}></input>
               </div>
