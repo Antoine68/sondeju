@@ -76,7 +76,9 @@ class FormAccount extends React.Component{
       nom : '',
       prenom : '',
       mail : '',
-      age : '1'
+      age : '1',
+      pseudoErreur : 0,
+      ageErreur : 0
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -89,6 +91,20 @@ class FormAccount extends React.Component{
       mail: e.target.value.mail,
       age: e.target.value.age
     })
+    if (e.target.name == "pseudo"){
+      if (e.target.value == ""){
+        this.setState({pseudoErreur : 1})
+      }else{
+        this.setState({pseudoErreur : 0})
+      }
+    }
+    if (e.target.name == "age"){
+      if (e.target.value == ""){
+        this.setState({ageErreur : 1})
+      }else{
+        this.setState({ageErreur : 0})
+      }
+    }
   }
 
   render (){
@@ -97,7 +113,8 @@ class FormAccount extends React.Component{
                 <div class="row col-lg-2 col-sm-12 col-form-label">
                   <label htmlFor="pseudo">Pseudonyme* :</label>
                 </div>
-                <input type="text" id="pseudo" name="pseudo" class="form-control col-lg-10 col-sm-12" value={this.state.pseudo} onChange={this.handleChange}></input>
+                <input type="text" name="pseudo" class="form-control col-lg-10 col-sm-12" style={{ border: this.state.pseudoErreur == 1 ? '1px solid red' : '' }}
+                value={this.state.pseudo} onChange={this.handleChange}></input>
               </div>
 
 
@@ -123,7 +140,8 @@ class FormAccount extends React.Component{
                 <div class="row col-lg-2 col-sm-12 col-form-label">
                   <label htmlFor="age">Âge* :</label>
                 </div>
-                <input type="number" id="age" name="age" class="form-control col-lg-10 col-sm-12" value={this.state.age} onChange={this.handleChange}></input>
+                <input type="number" id="age" name="age" class="form-control col-lg-10 col-sm-12" style={{ border: this.state.ageErreur == 1 ? '1px solid red' : '' }}
+                value={this.state.age} onChange={this.handleChange}></input>
               </div>
             </div>
             
