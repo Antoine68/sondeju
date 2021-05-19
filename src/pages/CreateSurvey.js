@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import './../styles/CreateSurvey.css';
 
 import Layout from "../components/Layout";
 
@@ -63,19 +64,31 @@ export default class CreateSurvey extends React.Component {
       return (
         <Draggable key={index} draggableId={"draggable-"+index} index={index}>
           {(provided, snapshot) => (
-            <div className="container-question" ref={provided.innerRef} {...provided.draggableProps} 
+            <div className="dragg mt-3" ref={provided.innerRef} {...provided.draggableProps} 
             style={{
               ...provided.draggableProps.style,
-              boxShadow: snapshot.isDragging ? "0 0 .4rem black" : "none"
+              boxShadow: snapshot.isDragging ? "0 0 .4rem black" : "none",
+              zIndex: snapshot.isDragging ? 99999 : 1,
+              backgroundColor: "white",
               }} >
-              <div className="toolbar-question">
-                <span {...provided.dragHandleProps}><i class="fas fa-expand-arrows-alt"></i></span>
-                {index === 0 ? <span></span> : <span onClick={() => this.moveQuestion(index, index-1)}><i className="fas fa-arrow-up"></i></span>}
-                <span onClick={() => this.removeQuestion(index)}><i className="fas fa-trash-alt"></i></span>
-                <span onClick={() => this.duplicateQuestion(index)}><i className="fas fa-copy"></i></span>
-                {index === this.state.questions.length-1 ? <span></span> : <span onClick={() => this.moveQuestion(index, index+1)}><i className="fas fa-arrow-down"></i></span>}
+              <div className="container-question container mw-100 p-0 card" >
+                <div className="row pt-3 pb-3">
+                  <div className="toolbar-question col-2">
+                   
+                  </div>
+                  <div className="col-8 card-body">
+                    <h3>Question {index+1}</h3>
+                    {question}
+                  </div>
+                  <div className="col-2">
+                    <div className="toolbar">
+                      <span><i title="Déplacer" {...provided.dragHandleProps} class="fas fa-expand-arrows-alt"></i></span>
+                      <span><i title="Supprimer"  onClick={() => this.removeQuestion(index)} className="fas fa-trash-alt pointer"></i></span>
+                      <span><i title="Dupliquer"  onClick={() => this.duplicateQuestion(index)} className="fas fa-copy pointer"></i></span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              {question}
             </div>
           )}
         </Draggable>
@@ -137,7 +150,7 @@ export default class CreateSurvey extends React.Component {
               </Dropdown>
             </div>
             
-            <div className="question text-center">
+            <div className="questions text-center">
               <DragDropContext onDragEnd={(...props) => {this.handleDragEnd(props[0])}}>
                 <Droppable droppableId="droppable-1">
                 {(provided, _) => (
@@ -147,9 +160,7 @@ export default class CreateSurvey extends React.Component {
                 )}
                 </Droppable>
               </DragDropContext>
-            </div>
-            
-            
+            </div>            
         </section>
         
       </Layout>

@@ -1,0 +1,15 @@
+.toolbar {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.toolbar i {
+    font-size: 18px;
+    margin: 8px 0;
+}
+.toolbar i:hover {
+    color: #283593 !important;
+}
+.toolbar .pointer {
+    cursor: pointer;
+}
