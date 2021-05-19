@@ -17,14 +17,19 @@ export default class CreateSurvey extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      i:0,
+      i:1,
       questions : []
     }
+   
+  }
+  
+  componentDidMount() {
+    this.addQuestion("");
   }
   
   addQuestion(questionType) {
-    this.state.i++;
     this.setState({
+      i: this.state.i + 1,
       questions: [...this.state.questions, <Question>{this.state.i}</Question>]
     });
   }
@@ -72,12 +77,13 @@ export default class CreateSurvey extends React.Component {
               backgroundColor: "white",
               }} >
               <div className="container-question container mw-100 p-0 card" >
+                <span className="question-counter">{index+1}</span>
                 <div className="row pt-3 pb-3">
                   <div className="toolbar-question col-2">
                    
                   </div>
                   <div className="col-8 card-body">
-                    <h3>Question {index+1}</h3>
+                    <h3 contentEditable={true} suppressContentEditableWarning={true} class="card-title">Saisir la question</h3>
                     {question}
                   </div>
                   <div className="col-2">
