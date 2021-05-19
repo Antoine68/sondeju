@@ -1,11 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
-
-import '@fortawesome/fontawesome-free/css/all.min.css'; 
-import 'bootstrap-css-only/css/bootstrap.min.css'; 
-import 'mdbreact/dist/css/mdb.css';
 import './../styles/NewsFeed.css';
-import 'react-dropdown/style.css';
-import { Link } from "react-router-dom";
 
 
 import React from "react";
@@ -28,7 +21,7 @@ export default class Footer extends React.Component {
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
         
           <h6 class="text-uppercase fw-bold mb-4">
-          <img src="./logo.png" width="30" height="30"></img> Sondeju
+          <img src="./logo.png" width="30" height="30" alt=""></img> Sondeju
           </h6>
           <p>
             Projet réalisé dans le cadre de l'UV d'HM40 

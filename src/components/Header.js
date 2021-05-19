@@ -1,11 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
-
-import '@fortawesome/fontawesome-free/css/all.min.css'; 
-import 'bootstrap-css-only/css/bootstrap.min.css'; 
-import 'mdbreact/dist/css/mdb.css';
-import { MDBBtn } from "mdbreact";
 import './../styles/Header.css';
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 import React, { Fragment } from "react";
@@ -42,17 +35,17 @@ export default class Header extends React.Component {
           <div class="col-lg-6 col-md-12 text-center">
             <div class="row">
 
-              <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center" href="#">
+              <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center">
               <i class="fas fa-plus blue-color fa-1x mr-2" aria-hidden="true"></i>
                 <Link to="/creer-sondage"><div class="text color-grey hover-texte">Créer un sondage</div></Link>
               </a>
 
-              <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center" href="#">
+              <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center">
               <i class="fas fa-atlas blue-color fa-1x mr-2" aria-hidden="true"></i>
                 <div class="text color-grey hover-texte">Accéder au tutoriel</div>
               </a>
               
-              <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center" href="#">
+              <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center">
               <i class="fas fa-random blue-color fa-1x mr-2" aria-hidden="true"></i>
                 <div class="text color-grey hover-texte">Sondage au hasard</div>
               </a>
