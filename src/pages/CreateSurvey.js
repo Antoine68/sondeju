@@ -5,10 +5,27 @@ import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 
 import { Menu, Dropdown } from 'antd';
+import Question from "../components/Question";
 
 
 
 export default class CreateSurvey extends React.Component {
+  
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      questions : [<Question/>, <Question/>]
+    }
+  }
+  
+  addQuestion(questionType) {
+    
+  }
+  
+  removeQuestion(idQuestion) {
+    
+  }
   
   menu() {
     return (
@@ -60,6 +77,10 @@ export default class CreateSurvey extends React.Component {
                 <i class="fas fa-plus mr-1"></i> Ajouter une question
                 </a>
               </Dropdown>
+            </div>
+            
+            <div className="question text-center">
+              {this.state.questions}
             </div>
             
             
