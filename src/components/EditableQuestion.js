@@ -1,12 +1,13 @@
 
 import React from "react";
 
-import { Input } from 'antd';
+import { Input, Select } from 'antd';
 import { Draggable } from "react-beautiful-dnd";
 import { Fragment } from "react";
 
 import { createObjectID, readObjectID,isValidObjectID }  from 'mongo-object-reader';
 import ContentEditable from "react-contenteditable";
+import TextArea from "antd/lib/input/TextArea";
 
 export default class EditableQuestion extends React.Component {
     
@@ -15,7 +16,13 @@ export default class EditableQuestion extends React.Component {
         this.state = {
           question : this.props.question
         }
+        this.typeConverter = {
+          "short": <Input placeholder="Saisir une réponse..." disabled={"disabled"}/>,
+          "long": <TextArea disabled={"disabled"} value={"Saisir une réponse..."}/>,
+          "select": <select disabled={"disabled"} ><option>Choisir une option</option></select>
+        }
     }
+   
     
     
     render()  {
@@ -39,7 +46,7 @@ export default class EditableQuestion extends React.Component {
                   </div>
                   <div className="col-8 card-body">
                   <ContentEditable html={question.title} onChange={(event) => this.props.handleChange(question.id, event)}/>
-                  <Input placeholder="Saisir une réponse..." disabled={"disabled"}/>
+                  {this.typeConverter[question.type]}
                   </div>
                   <div className="col-2">
                     <div className="toolbar">

@@ -30,7 +30,7 @@ export default class CreateSurvey extends React.Component {
   }
   
   componentDidMount() {
-    this.addQuestion("");
+    this.addQuestion("short");
   }
   
   addQuestion(type) {
@@ -84,10 +84,10 @@ export default class CreateSurvey extends React.Component {
   menu() {
     return (
       <Menu>
-        <Menu.Item key="0" onClick={() => this.addQuestion("")}>
+        <Menu.Item key="0" onClick={() => this.addQuestion("short")}>
           <span><i class="fas fa-grip-lines"></i> Réponse courte</span>
         </Menu.Item>
-        <Menu.Item key="1">
+        <Menu.Item key="1" onClick={() => this.addQuestion("long")}>
           <span><i class="fas fa-align-justify"></i> Réponse longue</span>
         </Menu.Item>
         <Menu.Divider />
@@ -97,7 +97,7 @@ export default class CreateSurvey extends React.Component {
         <Menu.Item key="3">
           <span><i class="far fa-square"></i> Cases à cocher</span>
         </Menu.Item>
-        <Menu.Item key="4">
+        <Menu.Item key="4" onClick={() => this.addQuestion("select")}>
           <span><i class="fas fa-list"></i> Liste déroulante</span>
         </Menu.Item>
         <Menu.Divider />
