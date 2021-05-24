@@ -10,6 +10,9 @@ import Question from "../components/Question";
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
+import { createObjectID, readObjectID,isValidObjectID }  from 'mongo-object-reader';
+import EditableQuestion from "../components/EditableQuestion";
+
 
 export default class CreateSurvey extends React.Component {
   
@@ -17,32 +20,36 @@ export default class CreateSurvey extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      i:1,
       questions : []
     }
    
+  }
+  
+  createQuestion(title, type, options) {
+    return {id: createObjectID(), title: title, type: type, options: options}
   }
   
   componentDidMount() {
     this.addQuestion("");
   }
   
-  addQuestion(questionType) {
+  addQuestion(type) {
     this.setState({
-      i: this.state.i + 1,
-      questions: [...this.state.questions, <Question>{this.state.i}</Question>]
+      questions: [...this.state.questions, this.createQuestion("Saisir la question", type, "")]
     });
   }
   
-  duplicateQuestion(indexQuestion) {
+  duplicateQuestion(idQuestion) {
+    let question = this.state.questions.find(question => question.id === idQuestion);
+    if(!question) return;
     this.setState({
-      questions: [...this.state.questions, this.state.questions[indexQuestion]]
+      questions: [...this.state.questions, this.createQuestion(question.title, question.type, question.options)]
     });
   }
   
-  removeQuestion(indexQuestion) {
+  removeQuestion(idQuestion) {
     this.setState({
-      questions: this.state.questions.filter((_, i) => i !== indexQuestion)
+      questions: this.state.questions.filter(question => question.id !== idQuestion)
     });
   }
   
@@ -64,45 +71,15 @@ export default class CreateSurvey extends React.Component {
     this.moveQuestion(indexSourceQuestion,indexDestinationQuestion);
   }
   
-  renderQuestions() {
-    return this.state.questions.map((question, index) => {
-      return (
-        <Draggable key={index} draggableId={"draggable-"+index} index={index}>
-          {(provided, snapshot) => (
-            <div className="dragg mt-3" ref={provided.innerRef} {...provided.draggableProps} 
-            style={{
-              ...provided.draggableProps.style,
-              boxShadow: snapshot.isDragging ? "0 0 .4rem black" : "none",
-              zIndex: snapshot.isDragging ? 99999 : 1,
-              backgroundColor: "white",
-              }} >
-              <div className="container-question container mw-100 p-0 card" >
-                <span className="question-counter">{index+1}</span>
-                <div className="row pt-3 pb-3">
-                  <div className="toolbar-question col-2">
-                   
-                  </div>
-                  <div className="col-8 card-body">
-                    <h3 contentEditable={true} suppressContentEditableWarning={true} class="card-title">Saisir la question</h3>
-                    {question}
-                  </div>
-                  <div className="col-2">
-                    <div className="toolbar">
-                      <span><i title="Déplacer" {...provided.dragHandleProps} class="fas fa-expand-arrows-alt"></i></span>
-                      <span><i title="Supprimer"  onClick={() => this.removeQuestion(index)} className="fas fa-trash-alt pointer"></i></span>
-                      <span><i title="Dupliquer"  onClick={() => this.duplicateQuestion(index)} className="fas fa-copy pointer"></i></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </Draggable>
-      );
-    });
+    
+  handleChange(idQuestion, event) {
+    let newTitle = event.target.value;
+    this.setState({
+      questions: this.state.questions.map(question => (question.id === idQuestion ? {id: question.id, title: newTitle, type: question.type, options: question.options} : question))
+    })
   }
   
-
+  
   
   menu() {
     return (
@@ -161,7 +138,21 @@ export default class CreateSurvey extends React.Component {
                 <Droppable droppableId="droppable-1">
                 {(provided, _) => (
                   <div ref={provided.innerRef} {...provided.droppableProps}>
-                    {this.renderQuestions()}
+                    {
+                      this.state.questions.map((question, index) => {
+                        return (
+                          <EditableQuestion
+                            key={index}
+                            question={question} 
+                            index={index}
+                            handleChange={this.handleChange.bind(this)} 
+                            handleDelete={this.removeQuestion.bind(this)} 
+                            handleDuplicate={this.duplicateQuestion.bind(this)}
+                          />
+                          
+                        )}
+                      )
+                    }
                   </div>
                 )}
                 </Droppable>
