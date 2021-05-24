@@ -67,6 +67,7 @@ export default class AccountContent extends React.Component {
   }
 }
 
+
 class FormAccount extends React.Component{
 
   constructor (props){
