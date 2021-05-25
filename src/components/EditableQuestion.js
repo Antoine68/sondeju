@@ -1,5 +1,6 @@
-
 import React from "react";
+
+import './../styles/EditableQuestion.css';
 
 import { Input, Select } from 'antd';
 import { Draggable } from "react-beautiful-dnd";

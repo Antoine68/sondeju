@@ -1,0 +1,4 @@
+.container-question:focus-within {
+    border-left: 10px #0F056B  solid;
+    transition: 0.3s;
+}
