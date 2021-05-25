@@ -3,6 +3,7 @@ import React from "react";
 
 import { Input } from 'antd';
 import { Fragment } from "react";
+import EditableOptionManager from "./EditableOptionManager";
 
 
 export default class EditableSelect extends React.Component {
@@ -10,13 +11,15 @@ export default class EditableSelect extends React.Component {
     
     
     render()  {
-      let question = this.props.question;
       return (
-          <Fragment>
-              <select disabled={"disabled"}><option>Choisir une option</option></select>
-          
-          </Fragment>
+        <Fragment>
+            <select disabled={"disabled"}><option>Choisir une option</option></select>
+            <EditableOptionManager question={this.props.question} handleOptionChange={this.props.handleOptionChange}>
+                <i class="fas fa-list"></i> 
+            </EditableOptionManager>    
+        </Fragment>
         
       );
     }
+
 }
