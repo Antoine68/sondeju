@@ -6,12 +6,18 @@ import './../styles/CreateSurvey.css';
 import Layout from "../components/Layout";
 
 import { Menu, Dropdown } from 'antd';
-import Question from "../components/Question";
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import { createObjectID, readObjectID,isValidObjectID }  from 'mongo-object-reader';
 import EditableQuestion from "../components/EditableQuestion";
+import ContentEditable from "react-contenteditable";
+import EditableInput from "../components/EditableInput/EditableInput";
+import EditableCheckbox from "../components/EditableInput/EditableCheckbox";
+import EditableRadio from "../components/EditableInput/EditableRadio";
+import EditableRange from "../components/EditableInput/EditableRange";
+import EditableSelect from "../components/EditableInput/EditableSelect";
+import EditableTextArea from "../components/EditableInput/EditableTextArea";
 
 
 export default class CreateSurvey extends React.Component {
@@ -20,9 +26,18 @@ export default class CreateSurvey extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      title: "Titre du sondage",
+      description : "Entrer une description du sondage...",
       questions : []
     }
-   
+    this.typeConverter = {
+      "short" : {initOption : null, component: <EditableInput/>},
+      "long" : {initOption : null, component: <EditableTextArea/>},
+      "multiple" : {initOption : [], component:<EditableCheckbox/>},
+      "unique": {initOption : [], component:<EditableRadio/>},
+      "select": {initOption : [], component:<EditableSelect/>},
+      "range": {initOption : {min: 0, max:4}, component:<EditableRange/>}      
+    }
   }
   
   createQuestion(title, type, options) {
@@ -35,7 +50,7 @@ export default class CreateSurvey extends React.Component {
   
   addQuestion(type) {
     this.setState({
-      questions: [...this.state.questions, this.createQuestion("Saisir la question", type, "")]
+      questions: [...this.state.questions, this.createQuestion("Saisir la question", type, this.typeConverter[type].initOption)]
     });
   }
   
@@ -67,19 +82,38 @@ export default class CreateSurvey extends React.Component {
     if(!dragObject.destination) return;
     let indexSourceQuestion = dragObject.source.index;
     let indexDestinationQuestion = dragObject.destination.index;
-    console.log(indexSourceQuestion, indexDestinationQuestion)
     this.moveQuestion(indexSourceQuestion,indexDestinationQuestion);
   }
   
     
-  handleChange(idQuestion, event) {
-    let newTitle = event.target.value;
+  handleQuestionChange(idQuestion, event) {
+    let newQuestionTitle = event.target.value;
     this.setState({
-      questions: this.state.questions.map(question => (question.id === idQuestion ? {id: question.id, title: newTitle, type: question.type, options: question.options} : question))
+      questions: this.state.questions.map(question => (question.id === idQuestion ? {id: question.id, title: newQuestionTitle, type: question.type, options: question.options} : question))
     })
   }
   
+  handleTilteChange(event) {
+    let newTitle = event.target.value;
+    this.setState({
+      title: newTitle
+    })
+  }
   
+  handleDescriptionChange(event) {
+    let newDescription = event.target.value;
+    this.setState({
+      description: newDescription
+    })
+  }
+  
+  handleOptionChange(idQuestion, options) {
+    this.setState({
+      questions: this.state.questions.map(question => (question.id === idQuestion ? {id: question.id, title: question.title, type: question.type, options: options} : question))
+    })
+  }
+  
+      
   
   menu() {
     return (
@@ -91,17 +125,17 @@ export default class CreateSurvey extends React.Component {
           <span><i class="fas fa-align-justify"></i> Réponse longue</span>
         </Menu.Item>
         <Menu.Divider />
-        <Menu.Item key="2">
+        <Menu.Item key="2" onClick={() => this.addQuestion("multiple")}>
           <span><i class="far fa-circle"></i> Choix multiple</span>
         </Menu.Item>
-        <Menu.Item key="3">
+        <Menu.Item key="3" onClick={() => this.addQuestion("unique")}>
           <span><i class="far fa-square"></i> Cases à cocher</span>
         </Menu.Item>
         <Menu.Item key="4" onClick={() => this.addQuestion("select")}>
           <span><i class="fas fa-list"></i> Liste déroulante</span>
         </Menu.Item>
         <Menu.Divider />
-        <Menu.Item key="5">
+        <Menu.Item key="5" onClick={() => this.addQuestion("range")}>
           <span><i class="fas fa-ruler-horizontal"></i> Echelle linéaire</span>
         </Menu.Item>
       </Menu>
@@ -122,9 +156,8 @@ export default class CreateSurvey extends React.Component {
         <h1 class="text-center font-weight-bold blue-color">Créer un sondage</h1>
         
         <section class="section-sondage mb-5 mt-5">
-            <h2 contentEditable={true} suppressContentEditableWarning={true}>Titre du sondage</h2>
-            <p contentEditable={true} suppressContentEditableWarning={true}>Entrer une description du sondage...</p>
-            
+          <ContentEditable html={this.state.title} onChange={(event) => this.handleTitleChange(event)}/>
+          <ContentEditable html={this.state.description} onChange={(event) => this.handleDescriptionChange(event)}/>            
             <div className="text-center">
               <Dropdown overlay={this.menu.bind(this)} trigger={['click']}>
                 <a className="ant-dropdown-link btn btn-outline-info button-account" onClick={e => e.preventDefault()}>
@@ -145,10 +178,19 @@ export default class CreateSurvey extends React.Component {
                             key={index}
                             question={question} 
                             index={index}
-                            handleChange={this.handleChange.bind(this)} 
+                            handleChange={this.handleQuestionChange.bind(this)} 
                             handleDelete={this.removeQuestion.bind(this)} 
                             handleDuplicate={this.duplicateQuestion.bind(this)}
-                          />
+                          >
+                          
+                            {React.cloneElement(this.typeConverter[question.type].component, 
+                              {
+                                question : question,
+                                handleOptionChange: this.handleOptionChange.bind(this)
+                              }
+                            )}
+                          
+                          </EditableQuestion>
                           
                         )}
                       )
@@ -159,7 +201,6 @@ export default class CreateSurvey extends React.Component {
               </DragDropContext>
             </div>            
         </section>
-        
       </Layout>
       
     );

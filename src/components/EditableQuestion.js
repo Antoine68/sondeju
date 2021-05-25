@@ -10,24 +10,10 @@ import ContentEditable from "react-contenteditable";
 import TextArea from "antd/lib/input/TextArea";
 
 export default class EditableQuestion extends React.Component {
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-          question : this.props.question
-        }
-        this.typeConverter = {
-          "short": <Input placeholder="Saisir une réponse..." disabled={"disabled"}/>,
-          "long": <TextArea disabled={"disabled"} value={"Saisir une réponse..."}/>,
-          "select": <select disabled={"disabled"} ><option>Choisir une option</option></select>
-        }
-    }
-   
-    
+        
     
     render()  {
-      let question = this.props.question;
-      let index = this.props.index;
+      let {question, index} = this.props;
       return (
           <Draggable draggableId={"draggable-"+index} index={index}>
             {(provided, snapshot) => (
@@ -46,7 +32,7 @@ export default class EditableQuestion extends React.Component {
                   </div>
                   <div className="col-8 card-body">
                   <ContentEditable html={question.title} onChange={(event) => this.props.handleChange(question.id, event)}/>
-                  {this.typeConverter[question.type]}
+                  {this.props.children}
                   </div>
                   <div className="col-2">
                     <div className="toolbar">
