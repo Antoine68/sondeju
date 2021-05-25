@@ -12,6 +12,7 @@ import Home from "./pages/Home";
 import Test from "./pages/Test";
 import CreateSurvey from "./pages/CreateSurvey";
 import Connection from "./pages/Connection"
+import Register from "./pages/Register"
 
 class App extends React.Component {
  
@@ -22,7 +23,8 @@ class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route path="/tableau-de-jp-baur" component={Test} />
             <Route path="/compte" component={Account} />
-            <Route path="/inscription" component={Connection} />
+            <Route path="/connexion" component={Connection} />
+            <Route path="/inscription" component={Register} />
             <Route path="/creer-sondage" component={CreateSurvey} />
           </Fragment>
       </BrowserRouter>
