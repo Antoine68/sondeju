@@ -43,7 +43,7 @@ export default class EditableOptionManager extends React.Component {
                 )
             })}
             <div>
-                <button onClick={() => this.handleAddOption()}>Ajouter un choix</button>
+                <button onClick={() => this.handleAddOption()}>{this.props.buttonText}</button>
             </div>   
         </Fragment>
         

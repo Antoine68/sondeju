@@ -13,7 +13,8 @@ export default class EditableRadio extends React.Component {
     render()  {
       return (
         <Fragment>
-            <EditableOptionManager question={this.props.question} handleOptionChange={this.props.handleOptionChange}>
+            <EditableOptionManager question={this.props.question} handleOptionChange={this.props.handleOptionChange} 
+            buttonText="Ajouter un choix">
                 <input type="radio" disabled/>
             </EditableOptionManager>
         </Fragment>

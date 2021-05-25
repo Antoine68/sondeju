@@ -14,7 +14,8 @@ export default class EditableSelect extends React.Component {
       return (
         <Fragment>
             <select disabled={"disabled"}><option>Choisir une option</option></select>
-            <EditableOptionManager question={this.props.question} handleOptionChange={this.props.handleOptionChange}>
+            <EditableOptionManager question={this.props.question} handleOptionChange={this.props.handleOptionChange} 
+            buttonText="Ajouter une option">
                 <i class="fas fa-list"></i> 
             </EditableOptionManager>    
         </Fragment>
