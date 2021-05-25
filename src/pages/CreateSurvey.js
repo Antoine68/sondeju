@@ -31,12 +31,12 @@ export default class CreateSurvey extends React.Component {
       questions : []
     }
     this.typeConverter = {
-      "short" : {initOption : null, component: <EditableInput/>},
-      "long" : {initOption : null, component: <EditableTextArea/>},
-      "multiple" : {initOption : [], component:<EditableCheckbox/>},
-      "unique": {initOption : [], component:<EditableRadio/>},
+      "short" : {initOption : [], component: <EditableInput/>},
+      "long" : {initOption : [], component: <EditableTextArea/>},
+      "multiple" : {initOption : [], component:<EditableRadio/>},
+      "unique": {initOption : [], component:<EditableCheckbox/>},
       "select": {initOption : [], component:<EditableSelect/>},
-      "range": {initOption : {min: 0, max:4}, component:<EditableRange/>}      
+      "range": {initOption : [{min: 0, max:4}], component:<EditableRange/>}      
     }
   }
   
@@ -54,11 +54,19 @@ export default class CreateSurvey extends React.Component {
     });
   }
   
+  duplicateOptions(options) {
+    let newOptions = options.map(option => {
+      if(option.id) option.id = createObjectID();
+      return option;
+    })
+    return newOptions;
+  }
+  
   duplicateQuestion(idQuestion) {
     let question = this.state.questions.find(question => question.id === idQuestion);
     if(!question) return;
     this.setState({
-      questions: [...this.state.questions, this.createQuestion(question.title, question.type, question.options)]
+      questions: [...this.state.questions, this.createQuestion(question.title, question.type, this.duplicateOptions(question.options))]
     });
   }
   
@@ -191,7 +199,6 @@ export default class CreateSurvey extends React.Component {
                             )}
                           
                           </EditableQuestion>
-                          
                         )}
                       )
                     }
