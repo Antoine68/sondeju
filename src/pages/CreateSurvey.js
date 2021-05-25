@@ -65,8 +65,12 @@ export default class CreateSurvey extends React.Component {
   duplicateQuestion(idQuestion) {
     let question = this.state.questions.find(question => question.id === idQuestion);
     if(!question) return;
+    let index = this.state.questions.findIndex(question => question.id === idQuestion);
+    let questions = this.state.questions.slice();
+    let newQuestion = this.createQuestion(question.title, question.type, this.duplicateOptions(question.options));
+    questions.splice(index+1, 0, newQuestion);
     this.setState({
-      questions: [...this.state.questions, this.createQuestion(question.title, question.type, this.duplicateOptions(question.options))]
+      questions: questions
     });
   }
   
