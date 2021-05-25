@@ -5,3 +5,11 @@
 .index2{
   z-index: 6;
 }
+
+.blue-color{
+  color: #0F056B !important;
+}
+
+.bg-button {
+  background-color: #0F056B !important;
+}

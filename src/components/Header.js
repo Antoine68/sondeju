@@ -87,7 +87,7 @@ const Searchbar = () => {
 const ButtonPage = () => {
   return (
     <Fragment>
-    <Link to="/compte">
+    <Link to="/inscription">
         <button type="button" class="btn btn-outline-info button-account" data-mdb-ripple-color="dark">
         <i class="fas fa-user mr-1"></i>
           Mon compte
