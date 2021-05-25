@@ -99,7 +99,7 @@ class FormAccount extends React.Component{
       }
     }
     if (e.target.name == "age"){
-      if (e.target.value == ""){
+      if (e.target.value == "" || e.target.value < 0){
         this.setState({ageErreur : 1})
       }else{
         this.setState({ageErreur : 0})

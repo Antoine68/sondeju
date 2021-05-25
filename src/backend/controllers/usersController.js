@@ -3,15 +3,8 @@ const User = require('../models/user');
 module.exports = {
   //# create user
   create: async (request, reply) => {
-    const { errors, isValid } = validateRegisterInput(req.body);
-
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
-
     try {
       const user = request.body;
-      console.log(user);
       const newUser = await User.create(user);
       reply.code(201).send(newUser);
     } catch (e) {
