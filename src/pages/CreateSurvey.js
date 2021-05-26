@@ -57,8 +57,7 @@ export default class CreateSurvey extends React.Component {
   
   duplicateOptions(options) {
     let newOptions = options.map(option => {
-      if(option.id) option.id = createObjectID();
-      return option;
+      return {...option, id:createObjectID()}
     })
     return newOptions;
   }
@@ -68,7 +67,7 @@ export default class CreateSurvey extends React.Component {
     if(!question) return;
     let index = this.state.questions.findIndex(question => question.id === idQuestion);
     let questions = this.state.questions.slice();
-    let newQuestion = this.createQuestion(question.title, question.type, this.duplicateOptions(question.options), question.mandatory);
+    let newQuestion = this.createQuestion(question.title, question.type, this.duplicateOptions(question.options), question.range, question.mandatory);
     questions.splice(index+1, 0, newQuestion);
     this.setState({
       questions: questions
@@ -189,7 +188,7 @@ export default class CreateSurvey extends React.Component {
                 <i class="fas fa-plus mr-1"></i> Ajouter une question
                 </a>
               </Dropdown>
-              <button type="button" class="btn btn-outline-info button-account" data-mdb-ripple-color="dark">
+              <button onClick={() => console.log(this.state)} type="button" class="btn btn-outline-info button-account" data-mdb-ripple-color="dark">
                   <i class="fas fa-share-square mr-1"></i>
                     Publier le sondage
               </button>

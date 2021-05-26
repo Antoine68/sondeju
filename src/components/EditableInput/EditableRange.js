@@ -30,7 +30,7 @@ export default class EditableRange extends React.Component {
       if(newMax > this.rangeMax) newMax = this.rangeMax;
       this.setState({
         range : {min: newMin, max: newMax}
-      }, () => this.props.handleOptionChange(this.props.question.id, [this.state.range]))
+      }, () => this.props.handleRangeChange(this.props.question.id, this.state.range))
     }
     
     
@@ -40,7 +40,7 @@ export default class EditableRange extends React.Component {
       if(newMax > this.rangeMax) newMax = this.rangeMax;
       this.setState({
         range : {min: this.state.range.min, max: newMax}
-      }, () => this.props.handleOptionChange(this.props.question.id, [this.state.range]))
+      }, () => this.props.handleRangeChange(this.props.question.id, this.state.range))
       
     }
     
@@ -50,7 +50,7 @@ export default class EditableRange extends React.Component {
       if(newMin < this.rangeMin) newMin = this.rangeMin;
       this.setState({
         range : {min: newMin, max: this.state.range.max}
-      }, () => this.props.handleOptionChange(this.props.question.id, [this.state.range]))
+      }, () => this.props.handleRangeChange(this.props.question.id, this.state.range))
     }
     
     render()  {
