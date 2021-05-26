@@ -1,7 +1,7 @@
 //import fastify & mongoose
 const fastify = require('fastify');
 const mongoose = require('mongoose');
-const usersRoutes = require('./routes/usersRoutes');
+const router = require('./routes/router');
 
 
 
@@ -22,7 +22,7 @@ try {
 }
 
 //handle root route
-usersRoutes(app);
+router(app);
 
 //app.get('/', (request, reply) => {
  // try{
