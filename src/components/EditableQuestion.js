@@ -9,6 +9,7 @@ import { Fragment } from "react";
 import { createObjectID, readObjectID,isValidObjectID }  from 'mongo-object-reader';
 import ContentEditable from "react-contenteditable";
 import TextArea from "antd/lib/input/TextArea";
+import { Popover } from "antd";
 
 export default class EditableQuestion extends React.Component {
         
@@ -40,7 +41,11 @@ export default class EditableQuestion extends React.Component {
                       <span><i title="Déplacer" {...provided.dragHandleProps} class="fas fa-expand-arrows-alt"></i></span>
                       <span><i title="Supprimer"  onClick={() => this.props.handleDelete(question.id)} className="fas fa-trash-alt pointer"></i></span>
                       <span><i title="Dupliquer"  onClick={() => this.props.handleDuplicate(question.id)} className="fas fa-copy pointer"></i></span>
-                      <span><i title={"Cliquer pour rendre la question " + (question.mandatory ? "non obligatoire" : "obligatoire")} className={"fas fa-asterisk pointer " + (question.mandatory ? "mandatory-eqst" : "no-mandatory-eqst")} onClick={() => this.props.handleMandatoryChange(question.id)}></i></span>
+                      <span>
+                        <Popover placement="topLeft" content={"Cliquer pour rendre la question " + (question.mandatory ? "non obligatoire" : "obligatoire")}>
+                          <i className={"fas fa-asterisk pointer " + (question.mandatory ? "mandatory-eqst" : "no-mandatory-eqst")} onClick={() => this.props.handleMandatoryChange(question.id)}></i>
+                        </Popover>
+                        </span>
                     </div>
                   </div>
                 </div>
