@@ -5,7 +5,8 @@ import './../styles/CreateSurvey.css';
 
 import Layout from "../components/Layout";
 
-import { Menu, Dropdown } from 'antd';
+import { Menu, Dropdown, Select } from 'antd';
+
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
@@ -19,7 +20,7 @@ import EditableRange from "../components/EditableInput/EditableRange";
 import EditableSelect from "../components/EditableInput/EditableSelect";
 import EditableTextArea from "../components/EditableInput/EditableTextArea";
 
-
+const { Option } = Select;
 
 export default class CreateSurvey extends React.Component {
   
@@ -29,6 +30,7 @@ export default class CreateSurvey extends React.Component {
     this.state = {
       title: "Saisir le titre du sondage",
       description : "Entrer une description du sondage...",
+      category: null,
       questions : []
     }
     this.typeConverter = {
@@ -39,6 +41,10 @@ export default class CreateSurvey extends React.Component {
       "select": {initRange : null, component:<EditableSelect/>},
       "range": {initRange : {min: 0, max:4}, component:<EditableRange/>}      
     }
+    this.categories = [
+      {id: createObjectID(), name:"catégorie1"},
+      {id: createObjectID(), name:"catégorie2"},
+    ]
   }
   
   createQuestion(title, type, options, range, mandatory) {
@@ -137,6 +143,12 @@ export default class CreateSurvey extends React.Component {
     })
   }
   
+  handleCategoryChange(value) {
+    this.setState({
+      category : value
+    });
+  }
+  
       
   
   menu() {
@@ -182,6 +194,18 @@ export default class CreateSurvey extends React.Component {
         <section class="section-sondage mb-5 mt-5">
           <ContentEditable className="title-editable" html={this.state.title} onChange={(event) => this.handleTitleChange(event)}/>
           <ContentEditable className="description-editable" html={this.state.description} onChange={(event) => this.handleDescriptionChange(event)}/>            
+          <div className="text-center mb-2">
+              <Select className="select-category" onChange={(value) => this.handleCategoryChange(value)} defaultValue="-1">
+                <Option value="-1">catégorie du sondage</Option>
+                {
+                  this.categories.map((category, index) => {
+                    return (
+                      <Option key={index} value={category.id}>{category.name}</Option>
+                    );
+                  })
+                }
+              </Select>
+            </div>
             <div className="text-center">
               <Dropdown overlay={this.menu.bind(this)} trigger={['click']}>
                 <a className="ant-dropdown-link btn btn-outline-info button-account" onClick={e => e.preventDefault()}>
@@ -193,7 +217,6 @@ export default class CreateSurvey extends React.Component {
                     Publier le sondage
               </button>
             </div>
-            
             <div className="questions text-center">
               <DragDropContext onDragEnd={(...props) => {this.handleDragEnd(props[0])}}>
                 <Droppable droppableId="droppable-1">

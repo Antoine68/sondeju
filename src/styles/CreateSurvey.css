@@ -17,3 +17,7 @@
     background-color: #0f056b1f;
     transition: 0.3s;
 }
+.select-category {
+    width: 200px;
+    border-radius: 50%;
+}
