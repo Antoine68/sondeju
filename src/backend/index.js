@@ -12,7 +12,7 @@ app.register(require('fastify-cors'), {
 })
 //connected fastify to mongoose
 try {
-    mongoose.connect('mongodb+srv://lhug:ZER2k66*o5@cluster-zebvi.mongodb.net/test?retryWrites=true&w=majority',
+    mongoose.connect('mongodb+srv://lhug:ZER2k66*o5@cluster-zebvi.mongodb.net/Sondeju?retryWrites=true&w=majority',
     { useNewUrlParser: true,
         useUnifiedTopology: true })
     .then(() => console.log('Connexion à MongoDB réussie !'))
