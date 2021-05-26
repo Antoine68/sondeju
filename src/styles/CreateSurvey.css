@@ -1,0 +1,19 @@
+.title-editable {
+    border-left : 5px #0F056B solid;
+    padding-left: 10px;
+    font-size: 2.3em;
+    margin-bottom: 15px;
+}
+.description-editable {
+    border-left : 5px #0F056B solid;
+    padding-left: 10px;
+    margin-bottom: 6px;
+}
+.title-editable:hover, .description-editable:hover {
+    background-color: rgb(244, 244, 244);
+}
+
+.title-editable:focus-within, .description-editable:focus-within {
+    background-color: #0f056b1f;
+    transition: 0.3s;
+}
