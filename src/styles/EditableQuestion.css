@@ -11,7 +11,7 @@
     border-radius: 100%;
 }
 .toolbar i:hover {
-    color: #283593 !important;
+    color: #283593;
 }
 .toolbar .pointer {
     cursor: pointer;
@@ -41,9 +41,10 @@
     background-color: #0f056b1f;
     transition: 0.3s;
 }
-.mandatory-eqst {
-    color: #0F056B;
+.mandatory-eqst  {
+    color: #881c27 !important;
 }
-.no-mandatory-eqst {
+.no-mandatory-eqst{
     color: grey !important;
 }
+
