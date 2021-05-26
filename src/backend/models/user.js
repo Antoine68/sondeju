@@ -10,6 +10,14 @@ const userSchema = new Schema({
   password : {type: String,required:true}
 });
 
+userSchema.virtual('survey', {
+  ref: 'Survey',
+  localField: '_id',
+  foreignField: 'author',
+  justOne: false
+})
+
+
 const User = mongoose.model('user', userSchema);
 
 module.exports = User;
