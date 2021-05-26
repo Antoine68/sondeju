@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import '../styles/App.css';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 export default class RegisterComponent extends React.Component {
 
@@ -19,7 +20,8 @@ export default class RegisterComponent extends React.Component {
         password: '',
         pseudoErreur: '0',
         ageErreur: '0',
-        passwordErreur: '0'
+        passwordErreur: '0',
+        redirect:'0'
         }
     }
 
@@ -74,11 +76,16 @@ export default class RegisterComponent extends React.Component {
                     if (res.status == 200){
                         console.log(res.data)
                         document.getElementById("erreurPseudo").innerHTML = res.data
+                    }else{
+                        this.setState({redirect : 1})
                     }
                 });
     }
 
     render()  {
+        if(this.state.redirect == '1'){
+            return <Redirect to="/compte" />
+        }
         return (
             <div>
                 <nav aria-label="breadcrumb">
