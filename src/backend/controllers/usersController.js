@@ -3,14 +3,19 @@ const User = require('../models/user');
 module.exports = {
   //# create user
   create: async (request, reply) => {
-    console.log("boomer");
     try {
-      console.log(request.body);
       const user = request.body;
-      console.log(user);
-      const newUser = await User.create(user);
-      console.log("super");
-      reply.code(201).send(newUser);
+      const pseudo = request.body.pseudo;
+      console.log(request.body.pseudo)
+      const pseudotrouver = await User.find({ pseudo: pseudo }).exec();
+      console.log(pseudotrouver)
+      console.log(pseudotrouver.length)
+      if (pseudotrouver.length == 0){
+        const newUser = await User.create(user);
+        reply.code(201).send(newUser);
+      }else{
+        reply.code(200).send("ce pseudo est déjà utilisé");
+      }
 
     } catch (e) {
       console.log(e)

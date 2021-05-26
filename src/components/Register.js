@@ -68,7 +68,14 @@ export default class RegisterComponent extends React.Component {
         console.log(userObject)
 
         axios.post('http://localhost:5000/api/user', userObject)
-            .then(res => console.log(res.data));
+            .then(
+                res => {
+                    console.log(res.status)
+                    if (res.status == 200){
+                        console.log(res.data)
+                        document.getElementById("erreurPseudo").innerHTML = res.data
+                    }
+                });
     }
 
     render()  {
