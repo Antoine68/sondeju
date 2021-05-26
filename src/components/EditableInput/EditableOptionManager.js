@@ -1,6 +1,7 @@
 
 import React from "react";
 
+import './../../styles/EditableOptionManager.css';
 
 import { Fragment } from "react";
 import ContentEditable from "react-contenteditable";
@@ -42,15 +43,15 @@ export default class EditableOptionManager extends React.Component {
         <Fragment>
             {this.state.options.map((option,index) => {
                 return (
-                    <div key={index}>
+                    <div className="choice-list" key={index}>
                         {this.props.children}
-                        <label> <ContentEditable html={option.value} onChange={(event) => this.handleChange(option.id, event)}/></label>
-                        <button onClick={() => this.handleDeleteOption(option.id)}>X</button>
+                        <label><ContentEditable html={option.value} onChange={(event) => this.handleChange(option.id, event)}/></label>
+                        <button title="Supprimer" onClick={() => this.handleDeleteOption(option.id)}>X</button>
                     </div>
                 )
             })}
             <div>
-                <button onClick={() => this.handleAddOption()}>{this.props.buttonText}</button>
+                <button title="Ajouter" className="btn-add-option" onClick={() => this.handleAddOption()}>{this.props.buttonText}</button>
             </div>   
         </Fragment>
         

@@ -40,8 +40,8 @@ export default class CreateSurvey extends React.Component {
     }
   }
   
-  createQuestion(title, type, options) {
-    return {id: createObjectID(), title: title, type: type, options: options}
+  createQuestion(title, type, options, mandatory) {
+    return {id: createObjectID(), title: title, type: type, options: options, mandatory: mandatory}
   }
   
   componentDidMount() {
@@ -50,7 +50,7 @@ export default class CreateSurvey extends React.Component {
   
   addQuestion(type) {
     this.setState({
-      questions: [...this.state.questions, this.createQuestion("Saisir la question", type, this.typeConverter[type].initOption)]
+      questions: [...this.state.questions, this.createQuestion("Saisir la question", type, this.typeConverter[type].initOption, false)]
     });
   }
   
@@ -67,7 +67,7 @@ export default class CreateSurvey extends React.Component {
     if(!question) return;
     let index = this.state.questions.findIndex(question => question.id === idQuestion);
     let questions = this.state.questions.slice();
-    let newQuestion = this.createQuestion(question.title, question.type, this.duplicateOptions(question.options));
+    let newQuestion = this.createQuestion(question.title, question.type, this.duplicateOptions(question.options), question.mandatory);
     questions.splice(index+1, 0, newQuestion);
     this.setState({
       questions: questions
@@ -98,14 +98,20 @@ export default class CreateSurvey extends React.Component {
   }
   
     
-  handleQuestionChange(idQuestion, event) {
+  handleQuestionTitleChange(idQuestion, event) {
     let newQuestionTitle = event.target.value;
     this.setState({
-      questions: this.state.questions.map(question => (question.id === idQuestion ? {id: question.id, title: newQuestionTitle, type: question.type, options: question.options} : question))
+      questions: this.state.questions.map(question => (question.id === idQuestion ? {...question, title: newQuestionTitle} : question))
     })
   }
   
-  handleTilteChange(event) {
+  handleQuestionMandatoryChange(idQuestion) {
+    this.setState({
+      questions: this.state.questions.map(question => (question.id === idQuestion ? {...question, mandatory: !question.mandatory} : question))
+    })
+  }
+  
+  handleTitleChange(event) {
     let newTitle = event.target.value;
     this.setState({
       title: newTitle
@@ -190,7 +196,8 @@ export default class CreateSurvey extends React.Component {
                             key={index}
                             question={question} 
                             index={index}
-                            handleChange={this.handleQuestionChange.bind(this)} 
+                            handleTitleChange={this.handleQuestionTitleChange.bind(this)} 
+                            handleMandatoryChange={this.handleQuestionMandatoryChange.bind(this)}
                             handleDelete={this.removeQuestion.bind(this)} 
                             handleDuplicate={this.duplicateQuestion.bind(this)}
                           >

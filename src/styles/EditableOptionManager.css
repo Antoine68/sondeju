@@ -1,0 +1,19 @@
+.choice-list {
+    margin-bottom: 5px;
+}
+.choice-list label {
+    margin:0px 5px;
+    padding: 0px 5px 0px 2px;
+}
+
+.choice-list label:hover {
+    border-bottom: 2px rgb(165, 165, 165) solid;
+}
+
+.choice-list label:focus-within {
+    border-bottom: 2px #0F056B solid;
+    background-color: rgb(244, 244, 244);
+}
+.btn-add-option {
+    margin-top: 10px;
+}
