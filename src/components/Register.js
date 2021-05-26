@@ -43,10 +43,8 @@ export default class RegisterComponent extends React.Component {
 
         console.log(userObject)
 
-        axios.post('http://localhost:4000/api/user', userObject)
+        axios.post('http://localhost:5000/api/user', userObject)
             .then(res => console.log(res.data));
-
-        this.setState({ pseudo: '', email: '', password: '' })
     }
 
     render()  {

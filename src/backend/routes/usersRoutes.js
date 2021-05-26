@@ -2,8 +2,8 @@ const usersController = require("../controllers/usersController");
 
 module.exports = (app) => {
     // create a user
+    console.log("rtoute")
     app.post('/api/user', usersController.create);
-    
     // get a user
     app.get('/api/user/:pseudo', usersController.get);
     

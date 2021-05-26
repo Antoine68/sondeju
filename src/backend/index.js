@@ -1,10 +1,15 @@
 //import fastify & mongoose
 const fastify = require('fastify');
 const mongoose = require('mongoose');
+const usersRoutes = require('./routes/usersRoutes');
+
+
 
 //initialized Fastify App
 const app = fastify();
-
+app.register(require('fastify-cors'), { 
+  origin: "*"
+})
 //connected fastify to mongoose
 try {
     mongoose.connect('mongodb+srv://lhug:ZER2k66*o5@cluster-zebvi.mongodb.net/test?retryWrites=true&w=majority',
@@ -17,13 +22,15 @@ try {
 }
 
 //handle root route
-app.get('/', (request, reply) => {
-  try{
-    reply.send("Hello world!");
-  } catch(e) {
-    console.error(e);
-  }
-})
+usersRoutes(app);
+
+//app.get('/', (request, reply) => {
+ // try{
+ //   reply.send("Hello world!");
+ // } catch(e) {
+ ///   console.error(e);
+ // }
+//})
 
 //set application listening on port 5000 of localhost
 app.listen(5000, (err, address) => {

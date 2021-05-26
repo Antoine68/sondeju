@@ -3,11 +3,17 @@ const User = require('../models/user');
 module.exports = {
   //# create user
   create: async (request, reply) => {
+    console.log("boomer");
     try {
+      console.log(request.body);
       const user = request.body;
+      console.log(user);
       const newUser = await User.create(user);
+      console.log("super");
       reply.code(201).send(newUser);
+
     } catch (e) {
+      console.log(e)
       reply.code(500).send(e);
     }
   },
