@@ -2,7 +2,7 @@
 const fastify = require('fastify');
 const mongoose = require('mongoose');
 const router = require('./routes/router');
-
+require('dotenv').config()
 
 
 //initialized Fastify App
@@ -12,7 +12,7 @@ app.register(require('fastify-cors'), {
 })
 //connected fastify to mongoose
 try {
-    mongoose.connect('mongodb+srv://lhug:ZER2k66*o5@cluster-zebvi.mongodb.net/Sondeju?retryWrites=true&w=majority',
+    mongoose.connect(process.env.DB_URI,
     { useNewUrlParser: true,
         useUnifiedTopology: true })
     .then(() => console.log('Connexion à MongoDB réussie !'))
