@@ -2,7 +2,7 @@ const Category = require('../models/category');
 
 
 module.exports = {
-  //# create survey
+  //# create category
   create: async (request, reply) => {
     try {
       let category = request.body;
@@ -14,7 +14,7 @@ module.exports = {
     }
   },
   
-  //#get survey
+  //#get all categories
   getAll: async (request, reply) => {
     try {
       let categories = await Category.find({});

@@ -6,8 +6,8 @@ const questionSchema = new Schema({
   type: {type: String, required: true},
   options: [{type: Schema.Types.ObjectId, required: true, ref:'Option'}], 
   range: {
-    min: {type: Number, min:0, max:9, required: true}, 
-    max:{type: Number, min:1, max:10, required: true}
+    min: {type: Number, min:0, max:9, required: false}, 
+    max:{type: Number, min:1, max:10, required: false}
   }, 
   mandatory : {type: Boolean, required: true}
 },{timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}});

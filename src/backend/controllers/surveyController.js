@@ -10,9 +10,11 @@ module.exports = {
     try {
         try {
             let survey = request.body;
-            console.log(survey);
-            
-            
+            survey.questions.map(async(question) => {
+                await Option.insertMany(question.options)
+            });
+            let questions = await Question.insertMany(survey.questions);
+            let newSurvey = await Survey.create(survey);
           } catch (e) {
             console.log(e)
             reply.code(500).send(e);

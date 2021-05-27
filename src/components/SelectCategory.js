@@ -17,7 +17,6 @@ export default class SelectCategory extends React.Component {
         axios.get('http://localhost:5000/api/categories')
             .then(res => {
                 const categories = res.data;
-                console.log(categories);
                 this.setState({ categories: categories });
             })
     }

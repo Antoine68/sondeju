@@ -30,6 +30,7 @@ export default class CreateSurvey extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      author: "60af86d7e2995b453cc9a6d1",
       title: "Saisir le titre du sondage",
       description : "Entrer une description du sondage...",
       category: null,
