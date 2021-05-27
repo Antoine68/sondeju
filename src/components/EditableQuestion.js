@@ -33,17 +33,17 @@ export default class EditableQuestion extends React.Component {
                    
                   </div>
                   <div className="col-8 card-body">
-                  <ContentEditable className="editable-question-title" html={question.title} onChange={(event) => this.props.handleTitleChange(question.id, event)}/>
+                  <ContentEditable className="editable-question-title" html={question.title} onChange={(event) => this.props.handleTitleChange(question._id, event)}/>
                   {this.props.children}
                   </div>
                   <div className="col-2">
                     <div className="toolbar">
                       <span><i title="Déplacer" {...provided.dragHandleProps} class="fas fa-expand-arrows-alt"></i></span>
-                      <span><i title="Supprimer"  onClick={() => this.props.handleDelete(question.id)} className="fas fa-trash-alt pointer"></i></span>
-                      <span><i title="Dupliquer"  onClick={() => this.props.handleDuplicate(question.id)} className="fas fa-copy pointer"></i></span>
+                      <span><i title="Supprimer"  onClick={() => this.props.handleDelete(question._id)} className="fas fa-trash-alt pointer"></i></span>
+                      <span><i title="Dupliquer"  onClick={() => this.props.handleDuplicate(question._id)} className="fas fa-copy pointer"></i></span>
                       <span>
                         <Popover placement="topLeft" content={"Cliquer pour rendre la question " + (question.mandatory ? "non obligatoire" : "obligatoire")}>
-                          <i className={"fas fa-asterisk pointer " + (question.mandatory ? "mandatory-eqst" : "no-mandatory-eqst")} onClick={() => this.props.handleMandatoryChange(question.id)}></i>
+                          <i className={"fas fa-asterisk pointer " + (question.mandatory ? "mandatory-eqst" : "no-mandatory-eqst")} onClick={() => this.props.handleMandatoryChange(question._id)}></i>
                         </Popover>
                         </span>
                     </div>

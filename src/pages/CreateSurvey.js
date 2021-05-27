@@ -19,8 +19,10 @@ import EditableRadio from "../components/EditableInput/EditableRadio";
 import EditableRange from "../components/EditableInput/EditableRange";
 import EditableSelect from "../components/EditableInput/EditableSelect";
 import EditableTextArea from "../components/EditableInput/EditableTextArea";
+import axios from "axios";
+import SelectCategory from "../components/SelectCategory";
 
-const { Option } = Select;
+
 
 export default class CreateSurvey extends React.Component {
   
@@ -41,14 +43,15 @@ export default class CreateSurvey extends React.Component {
       "select": {initRange : null, component:<EditableSelect/>},
       "range": {initRange : {min: 0, max:4}, component:<EditableRange/>}      
     }
-    this.categories = [
-      {id: createObjectID(), name:"catégorie1"},
-      {id: createObjectID(), name:"catégorie2"},
-    ]
+    this.categories = [];
+  }
+  
+  loadCategories() {
+    
   }
   
   createQuestion(title, type, options, range, mandatory) {
-    return {id: createObjectID(), title: title, type: type, options: options, range:range, mandatory: mandatory}
+    return {_id: createObjectID(), title: title, type: type, options: options, range:range, mandatory: mandatory}
   }
   
   componentDidMount() {
@@ -63,15 +66,15 @@ export default class CreateSurvey extends React.Component {
   
   duplicateOptions(options) {
     let newOptions = options.map(option => {
-      return {...option, id:createObjectID()}
+      return {...option, _id:createObjectID()}
     })
     return newOptions;
   }
   
   duplicateQuestion(idQuestion) {
-    let question = this.state.questions.find(question => question.id === idQuestion);
+    let question = this.state.questions.find(question => question._id === idQuestion);
     if(!question) return;
-    let index = this.state.questions.findIndex(question => question.id === idQuestion);
+    let index = this.state.questions.findIndex(question => question._id === idQuestion);
     let questions = this.state.questions.slice();
     let newQuestion = this.createQuestion(question.title, question.type, this.duplicateOptions(question.options), question.range, question.mandatory);
     questions.splice(index+1, 0, newQuestion);
@@ -82,7 +85,7 @@ export default class CreateSurvey extends React.Component {
   
   removeQuestion(idQuestion) {
     this.setState({
-      questions: this.state.questions.filter(question => question.id !== idQuestion)
+      questions: this.state.questions.filter(question => question._id !== idQuestion)
     });
   }
   
@@ -107,13 +110,13 @@ export default class CreateSurvey extends React.Component {
   handleQuestionTitleChange(idQuestion, event) {
     let newQuestionTitle = event.target.value;
     this.setState({
-      questions: this.state.questions.map(question => (question.id === idQuestion ? {...question, title: newQuestionTitle} : question))
+      questions: this.state.questions.map(question => (question._id === idQuestion ? {...question, title: newQuestionTitle} : question))
     })
   }
   
   handleQuestionMandatoryChange(idQuestion) {
     this.setState({
-      questions: this.state.questions.map(question => (question.id === idQuestion ? {...question, mandatory: !question.mandatory} : question))
+      questions: this.state.questions.map(question => (question._id === idQuestion ? {...question, mandatory: !question.mandatory} : question))
     })
   }
   
@@ -133,13 +136,13 @@ export default class CreateSurvey extends React.Component {
   
   handleOptionChange(idQuestion, options) {
     this.setState({
-      questions: this.state.questions.map(question => (question.id === idQuestion ? {...question, options: options} : question))
+      questions: this.state.questions.map(question => (question._id === idQuestion ? {...question, options: options} : question))
     })
   }
   
   handleRangeChange(idQuestion, range) {
     this.setState({
-      questions: this.state.questions.map(question => (question.id === idQuestion ? {...question, range: range} : question))
+      questions: this.state.questions.map(question => (question._id === idQuestion ? {...question, range: range} : question))
     })
   }
   
@@ -147,6 +150,20 @@ export default class CreateSurvey extends React.Component {
     this.setState({
       category : value
     });
+  }
+  
+  onSubmit() {
+    axios.post('http://localhost:5000/api/survey', this.state)
+      .then(
+        res => {
+          console.log(res.status)
+          if (res.status == 200){
+              console.log(res.data)
+          }else{
+            
+          }
+        }
+      );
   }
   
       
@@ -195,16 +212,7 @@ export default class CreateSurvey extends React.Component {
           <ContentEditable className="title-editable" html={this.state.title} onChange={(event) => this.handleTitleChange(event)}/>
           <ContentEditable className="description-editable" html={this.state.description} onChange={(event) => this.handleDescriptionChange(event)}/>            
           <div className="text-center mb-2">
-              <Select className="select-category" onChange={(value) => this.handleCategoryChange(value)} defaultValue="-1">
-                <Option value="-1">catégorie du sondage</Option>
-                {
-                  this.categories.map((category, index) => {
-                    return (
-                      <Option key={index} value={category.id}>{category.name}</Option>
-                    );
-                  })
-                }
-              </Select>
+              <SelectCategory handleChange={this.handleCategoryChange.bind(this)} defaultValue={this.state.category} />
             </div>
             <div className="text-center">
               <Dropdown overlay={this.menu.bind(this)} trigger={['click']}>
@@ -212,7 +220,7 @@ export default class CreateSurvey extends React.Component {
                 <i class="fas fa-plus mr-1"></i> Ajouter une question
                 </a>
               </Dropdown>
-              <button onClick={() => console.log(this.state)} type="button" class="btn btn-outline-info button-account" data-mdb-ripple-color="dark">
+              <button onClick={() => this.onSubmit()} type="button" class="btn btn-outline-info button-account" data-mdb-ripple-color="dark">
                   <i class="fas fa-share-square mr-1"></i>
                     Publier le sondage
               </button>

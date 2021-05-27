@@ -8,7 +8,15 @@ module.exports = {
   //# create survey
   create: async (request, reply) => {
     try {
-      
+        try {
+            let survey = request.body;
+            console.log(survey);
+            
+            
+          } catch (e) {
+            console.log(e)
+            reply.code(500).send(e);
+          }
 
     } catch (e) {
       console.log(e)

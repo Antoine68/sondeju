@@ -1,3 +1,5 @@
+const categoryController = require("../controllers/categoryController");
+const surveyController = require("../controllers/surveyController");
 const usersController = require("../controllers/usersController");
 
 module.exports = (app) => {
@@ -12,4 +14,14 @@ module.exports = (app) => {
     
     // delete a user
     //app.delete('/api/notes/:id', (request, reply) => {});
+    
+    // create a survey
+    app.post('/api/survey', surveyController.create);
+    
+    
+    //create a category
+    app.post('/api/category', categoryController.create);
+    
+    //get all categories
+    app.get('/api/categories', categoryController.getAll);
   };

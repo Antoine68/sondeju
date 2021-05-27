@@ -17,8 +17,8 @@ export default class EditableRange extends React.Component {
     }
     
     onBlur(event) {
-      let newMin = parseInt(document.getElementsByName("min-"+this.props.question.id)[0].value, 10);
-      let newMax = parseInt(document.getElementsByName("max-"+this.props.question.id)[0].value, 10);
+      let newMin = parseInt(document.getElementsByName("min-"+this.props.question._id)[0].value, 10);
+      let newMax = parseInt(document.getElementsByName("max-"+this.props.question._id)[0].value, 10);
       if(newMax < newMin) {
         newMin = newMin + newMax;
         newMax = newMin - newMax;
@@ -30,7 +30,7 @@ export default class EditableRange extends React.Component {
       if(newMax > this.rangeMax) newMax = this.rangeMax;
       this.setState({
         range : {min: newMin, max: newMax}
-      }, () => this.props.handleRangeChange(this.props.question.id, this.state.range))
+      }, () => this.props.handleRangeChange(this.props.question._id, this.state.range))
     }
     
     
@@ -40,7 +40,7 @@ export default class EditableRange extends React.Component {
       if(newMax > this.rangeMax) newMax = this.rangeMax;
       this.setState({
         range : {min: this.state.range.min, max: newMax}
-      }, () => this.props.handleRangeChange(this.props.question.id, this.state.range))
+      }, () => this.props.handleRangeChange(this.props.question._id, this.state.range))
       
     }
     
@@ -50,7 +50,7 @@ export default class EditableRange extends React.Component {
       if(newMin < this.rangeMin) newMin = this.rangeMin;
       this.setState({
         range : {min: newMin, max: this.state.range.max}
-      }, () => this.props.handleRangeChange(this.props.question.id, this.state.range))
+      }, () => this.props.handleRangeChange(this.props.question._id, this.state.range))
     }
     
     render()  {
@@ -59,13 +59,13 @@ export default class EditableRange extends React.Component {
             <div className="container mw-100 p-0 text-center">
                 <div className="row">
                   <div className="col-3">
-                    <Input min={this.rangeMin} max={this.rangeMax-1} name={"min-"+this.props.question.id} type="number" value={this.state.range.min} placeholder="min.." onBlur={(event) => this.onBlur(event)} onChange={(event) => this.handleMinChange(event)} />
+                    <Input min={this.rangeMin} max={this.rangeMax-1} name={"min-"+this.props.question._id} type="number" value={this.state.range.min} placeholder="min.." onBlur={(event) => this.onBlur(event)} onChange={(event) => this.handleMinChange(event)} />
                   </div>
                   <div className="col-6">
                     <Input type="range" disabled={"disabled"}/>
                   </div>
                   <div className="col-3">
-                    <Input min={this.rangeMin+1} max={this.rangeMax} name={"max-"+this.props.question.id} type="number" value={this.state.range.max} placeholder="max.." onBlur={(event) => this.onBlur(event)} onChange={(event) => this.handleMaxChange(event)} />
+                    <Input min={this.rangeMin+1} max={this.rangeMax} name={"max-"+this.props.question._id} type="number" value={this.state.range.max} placeholder="max.." onBlur={(event) => this.onBlur(event)} onChange={(event) => this.handleMaxChange(event)} />
                   </div>
                 </div>
             </div>

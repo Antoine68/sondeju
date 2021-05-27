@@ -20,21 +20,21 @@ export default class EditableOptionManager extends React.Component {
     handleAddOption() {
         this.setState({
             index: this.state.index+1,
-            options : [...this.state.options, {id: createObjectID(), value: "Choix "+ this.state.index}]
-        }, () => this.props.handleOptionChange(this.props.question.id, this.state.options));
+            options : [...this.state.options, {_id: createObjectID(), value: "Choix "+ this.state.index}]
+        }, () => this.props.handleOptionChange(this.props.question._id, this.state.options));
     }
     
     handleDeleteOption(idOption) {
         this.setState({
-            options: this.state.options.filter(option => option.id !== idOption)
-        }, () => this.props.handleOptionChange(this.props.question.id, this.state.options));
+            options: this.state.options.filter(option => option._id !== idOption)
+        }, () => this.props.handleOptionChange(this.props.question._id, this.state.options));
     }
     
     handleChange(idOption, event) {
         let newOptionValue = event.target.value;
         this.setState({
-            options: this.state.options.map(option => (option.id === idOption ? {id: option.id, value: newOptionValue} : option))
-        }, () => this.props.handleOptionChange(this.props.question.id, this.state.options));
+            options: this.state.options.map(option => (option._id === idOption ? {_id: option._id, value: newOptionValue} : option))
+        }, () => this.props.handleOptionChange(this.props.question._id, this.state.options));
     }
     
     
@@ -45,8 +45,8 @@ export default class EditableOptionManager extends React.Component {
                 return (
                     <div className="choice-list" key={index}>
                         {this.props.children}
-                        <label><ContentEditable html={option.value} onChange={(event) => this.handleChange(option.id, event)}/></label>
-                        <button title="Supprimer" onClick={() => this.handleDeleteOption(option.id)}>X</button>
+                        <label><ContentEditable html={option.value} onChange={(event) => this.handleChange(option._id, event)}/></label>
+                        <button title="Supprimer" onClick={() => this.handleDeleteOption(option._id)}>X</button>
                     </div>
                 )
             })}
