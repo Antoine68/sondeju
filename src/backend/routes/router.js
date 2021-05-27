@@ -18,6 +18,9 @@ module.exports = (app) => {
     // create a survey
     app.post('/api/survey', surveyController.create);
     
+    // get surveys paginate
+    app.get('/api/surveys/:page', surveyController.getPaginate);
+    
     
     //create a category
     app.post('/api/category', categoryController.create);

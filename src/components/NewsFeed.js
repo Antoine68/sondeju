@@ -3,8 +3,10 @@ import 'react-dropdown/style.css';
 import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { Pagination } from 'antd';
+import CardSurvey from "./CardSurvey";
 
 import React from "react";
+import axios from 'axios';
 
 const menu = (
   <Menu>
@@ -31,6 +33,27 @@ function onShowSizeChange(current, pageSize) {
 }
 
 export default class NewsFeed extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentPage: 1,
+      surveys: []
+    }
+  }
+  
+  componentDidMount() {
+    this.loadSurveys();
+  }
+  
+  loadSurveys() {
+    axios.get('http://localhost:5000/api/surveys/'+this.state.currentPage)
+      .then(res => {
+        const surveys = res.data;
+        this.setState({ surveys: surveys });
+    })
+  }
+  
   render()  {
     return (
       <div>
@@ -48,126 +71,11 @@ export default class NewsFeed extends React.Component {
           <div class="col-lg-3"></div>
         </div>
         <div class="row mw-100 m-0 p-0 mt-3">
-          <div class="col-lg-4 col-md-12 mt-3 mb-3">
-            <div class="card text-center">
-              <div class="card-header bg-white">
-                Catégorie
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Titre du sondage</h5>
-                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary bg-button">Consulter</button>
-              </div>
-              <div class="card-footer text-muted bg-white">
-                Durée : 2 min
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12 mt-3 mb-3">
-            <div class="card text-center">
-              <div class="card-header bg-white">
-                Catégorie
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Titre du sondage</h5>
-                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary bg-button">Consulter</button>
-              </div>
-              <div class="card-footer text-muted bg-white">
-                Durée : 2 min
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12 mt-3 mb-3">
-            <div class="card text-center">
-              <div class="card-header bg-white">
-                Catégorie
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Titre du sondage</h5>
-                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary bg-button">Consulter</button>
-              </div>
-              <div class="card-footer text-muted bg-white">
-                Durée : 2 min
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12 mt-3 mb-3">
-            <div class="card text-center">
-              <div class="card-header bg-white">
-                Catégorie
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Titre du sondage</h5>
-                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary bg-button">Consulter</button>
-              </div>
-              <div class="card-footer text-muted bg-white">
-                Durée : 2 min
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12 mt-3 mb-3">
-            <div class="card text-center">
-              <div class="card-header bg-white">
-                Catégorie
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Titre du sondage</h5>
-                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary bg-button">Consulter</button>
-              </div>
-              <div class="card-footer text-muted bg-white">
-                Durée : 2 min
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12 mt-3 mb-3">
-            <div class="card text-center">
-              <div class="card-header bg-white">
-                Catégorie
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Titre du sondage</h5>
-                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary bg-button">Consulter</button>
-              </div>
-              <div class="card-footer text-muted bg-white">
-                Durée : 2 min
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12 mt-3 mb-3">
-            <div class="card text-center">
-              <div class="card-header bg-white">
-                Catégorie
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Titre du sondage</h5>
-                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary bg-button">Consulter</button>
-              </div>
-              <div class="card-footer text-muted bg-white">
-                Durée : 2 min
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12 mt-3 mb-3">
-            <div class="card text-center">
-              <div class="card-header bg-white">
-                Catégorie
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Titre du sondage</h5>
-                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary bg-button">Consulter</button>
-              </div>
-              <div class="card-footer text-muted bg-white">
-                Durée : 2 min
-              </div>
-            </div>
-          </div>
+            {
+              this.state.surveys.map((survey, index) => {
+                return <CardSurvey key={index} survey={survey}/>
+              })
+            }
         </div>
         <div class="text-center mt-2 mb-2">
           <Pagination showSizeChanger onShowSizeChange={onShowSizeChange} defaultCurrent={1} total={35}/>

@@ -14,7 +14,8 @@ module.exports = {
                 await Option.insertMany(question.options)
             });
             let questions = await Question.insertMany(survey.questions);
-            let newSurvey = await Survey.create(survey);
+            let author = await User.findOne({});
+            let newSurvey = await Survey.create({...survey, author:author});
           } catch (e) {
             console.log(e)
             reply.code(500).send(e);
@@ -30,12 +31,28 @@ module.exports = {
   get: async (request, reply) => {
     try {
       const surveyId = request.params.id;
-      const survey = await Survey.findById(surveyId).populate({path:"category author questions", populate: {path: "options"}});
+      const survey = await Survey.findById(surveyId).populate({path:"category questions", populate: {path: "options"}});
       reply.code(200).send(survey);
     } catch (e) {
       reply.code(500).send(e);
     }
   },
+  
+  getPaginate: async (request, reply) => {
+    try {
+        const resultsPerPage = 15;
+        const page = request.params.page-1;
+        const surveys = await Survey.find({})
+            .populate({path:"category questions"})
+            .sort({created_at:-1})
+            .limit(resultsPerPage)
+            .skip(resultsPerPage * page);
+        reply.code(200).send(surveys);
+    } catch (e) {
+        reply.code(500).send(e);
+    }
+  },
+  
   
   
 };
