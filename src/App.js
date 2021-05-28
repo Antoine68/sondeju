@@ -14,20 +14,26 @@ import CreateSurvey from "./pages/CreateSurvey";
 import Connection from "./pages/Connection"
 import Register from "./pages/Register"
 
+import store from './store/index'
+import { Provider } from 'react-redux'
+
+
 class App extends React.Component {
  
   render()  {
     return  (
-      <BrowserRouter>
-          <Fragment>
-            <Route exact path="/" component={Home} />
-            <Route path="/tableau-de-jp-baur" component={Test} />
-            <Route path="/compte" component={Account} />
-            <Route path="/connexion" component={Connection} />
-            <Route path="/inscription" component={Register} />
-            <Route path="/creer-sondage" component={CreateSurvey} />
-          </Fragment>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+            <Fragment>
+              <Route exact path="/" component={Home} />
+              <Route path="/tableau-de-jp-baur" component={Test} />
+              <Route path="/compte" component={Account} />
+              <Route path="/connexion" component={Connection} />
+              <Route path="/inscription" component={Register} />
+              <Route path="/creer-sondage" component={CreateSurvey} />
+            </Fragment>
+        </BrowserRouter>
+      </Provider>
     );
   }
  

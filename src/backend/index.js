@@ -11,6 +11,7 @@ app.register(require('fastify-cors'), {
   origin: "*"
 })
 //connected fastify to mongoose
+console.log(process.env.DB_URI)
 try {
     mongoose.connect(process.env.DB_URI,
     { useNewUrlParser: true,
