@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import '../styles/App.css';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { connect } from "react-redux"
+import {addConnection} from '../store/actions'
 
-export default class RegisterComponent extends React.Component {
+class RegisterComponent extends React.Component {
 
     constructor(props) {
         super(props)
@@ -67,8 +69,6 @@ export default class RegisterComponent extends React.Component {
             password: this.state.password
         };
 
-        console.log(userObject)
-
         axios.post('http://localhost:5000/api/user', userObject)
             .then(
                 res => {
@@ -80,6 +80,16 @@ export default class RegisterComponent extends React.Component {
                         this.setState({redirect : 1})
                     }
                 });
+
+        const userStore = {
+            connected : true,
+            pseudo: this.state.pseudo,
+            name: '',
+            firstname: '',
+            mail : '',
+            age: this.state.age
+        }
+        this.props.addConnection(userStore)
     }
 
     render()  {
@@ -133,3 +143,9 @@ export default class RegisterComponent extends React.Component {
         );
     }
 }
+
+const user = state => ({
+    user: state.user
+  });
+  
+  export default connect(user, { addConnection })(RegisterComponent);

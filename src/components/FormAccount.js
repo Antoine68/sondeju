@@ -4,15 +4,17 @@ import React from "react";
   class FormAccount extends React.Component{
   
     constructor (props){
+        console.log("okok")
       super(props)
       const user = this.props.user;
+      console.log(user)
       
       this.state = {
-        pseudo : user.user.pseudo,
-        nom : user.user.name,
-        prenom : user.user.firstname,
-        mail : user.user.mail,
-        age : user.user.age,
+        pseudo : user.pseudo,
+        nom : user.name,
+        prenom : user.firstname,
+        mail : user.mail,
+        age : user.age,
         pseudoErreur : 0,
         ageErreur : 0
       }

@@ -2,12 +2,12 @@ import {Types} from './constants'
 
 const initialState = {
     user: {
-        connected : true,
-        pseudo: 'jean',
-        name: 'egeg',
-        firstname: 'egfgh',
-        mail : 'zrf',
-        age: '12'
+        connected : false,
+        pseudo: 'ak',
+        name: '',
+        firstname: '',
+        mail : '',
+        age: ''
     }
 }
 
