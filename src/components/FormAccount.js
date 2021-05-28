@@ -4,10 +4,8 @@ import React from "react";
   class FormAccount extends React.Component{
   
     constructor (props){
-        console.log("okok")
       super(props)
       const user = this.props.user;
-      console.log(user)
       
       this.state = {
         pseudo : user.pseudo,

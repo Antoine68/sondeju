@@ -3,7 +3,7 @@ import {Types} from './constants'
 const initialState = {
     user: {
         connected : false,
-        pseudo: 'ak',
+        pseudo: '',
         name: '',
         firstname: '',
         mail : '',
