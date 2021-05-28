@@ -6,6 +6,7 @@ import './../../styles/EditableOptionManager.css';
 import { Fragment } from "react";
 import ContentEditable from "react-contenteditable";
 import { createObjectID, readObjectID,isValidObjectID }  from 'mongo-object-reader';
+import { sanitize } from "../../utils";
 
 export default class EditableOptionManager extends React.Component {
      
@@ -31,7 +32,7 @@ export default class EditableOptionManager extends React.Component {
     }
     
     handleChange(idOption, event) {
-        let newOptionValue = event.target.value.replace( /(<([^>]+)>)/ig, '');
+        let newOptionValue = sanitize(event.target.value);
         this.setState({
             options: this.state.options.map(option => (option._id === idOption ? {_id: option._id, value: newOptionValue} : option))
         }, () => this.props.handleOptionChange(this.props.question._id, this.state.options));
