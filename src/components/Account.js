@@ -2,6 +2,7 @@ import './../styles/Account.css';
 import { Link} from 'react-router-dom';
 
 import React from "react";
+import FormAccount from './FormAccount';
 
 export default class AccountContent extends React.Component {
   render()  {
@@ -65,12 +66,18 @@ export default class AccountContent extends React.Component {
     );
   }
 }
+/*
+const user = (state) => ({
+  user: state.user
+});
 
+export default connect(user,null)(FormAccount)
 
 class FormAccount extends React.Component{
 
   constructor (props){
     super(props)
+    
     this.state = {
       pseudo : 'Loïc',
       nom : '',
@@ -147,3 +154,4 @@ class FormAccount extends React.Component{
             
   }
 }
+*/
