@@ -21,6 +21,7 @@ import EditableSelect from "../components/EditableInput/EditableSelect";
 import EditableTextArea from "../components/EditableInput/EditableTextArea";
 import axios from "axios";
 import SelectCategory from "../components/SelectCategory";
+import { sanitize } from "../utils";
 
 
 
@@ -31,8 +32,8 @@ export default class CreateSurvey extends React.Component {
     super(props);
     this.state = {
       author: null,
-      title: "Saisir le titre du sondage",
-      description : "Entrer une description du sondage...",
+      title: "",
+      description : "",
       category: null,
       questions : []
     }
@@ -109,7 +110,7 @@ export default class CreateSurvey extends React.Component {
   
     
   handleQuestionTitleChange(idQuestion, event) {
-    let newQuestionTitle = event.target.value;
+    let newQuestionTitle = sanitize(event.target.value);
     this.setState({
       questions: this.state.questions.map(question => (question._id === idQuestion ? {...question, title: newQuestionTitle} : question))
     })
@@ -122,14 +123,14 @@ export default class CreateSurvey extends React.Component {
   }
   
   handleTitleChange(event) {
-    let newTitle = event.target.value;
+    let newTitle = sanitize(event.target.value);
     this.setState({
       title: newTitle
     })
   }
   
   handleDescriptionChange(event) {
-    let newDescription = event.target.value;
+    let newDescription = sanitize(event.target.value, true);
     this.setState({
       description: newDescription
     })
@@ -210,8 +211,8 @@ export default class CreateSurvey extends React.Component {
         <h1 class="text-center font-weight-bold blue-color">Créer un sondage</h1>
         
         <section class="section-sondage mb-5 mt-5">
-          <ContentEditable className="title-editable" html={this.state.title} onChange={(event) => this.handleTitleChange(event)}/>
-          <ContentEditable className="description-editable" html={this.state.description} onChange={(event) => this.handleDescriptionChange(event)}/>            
+          <ContentEditable placeholder={"Saisir le titre du sondage"} className="title-editable" html={this.state.title} onChange={(event) => this.handleTitleChange(event)}/>
+          <ContentEditable placeholder={"Entrer une description du sondage..."} className="description-editable" html={this.state.description} onChange={(event) => this.handleDescriptionChange(event)}/>            
           <div className="text-center mb-2">
               <SelectCategory handleChange={this.handleCategoryChange.bind(this)} defaultValue={this.state.category} />
             </div>

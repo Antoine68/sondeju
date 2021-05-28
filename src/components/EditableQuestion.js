@@ -33,7 +33,7 @@ export default class EditableQuestion extends React.Component {
                    
                   </div>
                   <div className="col-8 card-body">
-                  <ContentEditable className="editable-question-title" html={question.title} onChange={(event) => this.props.handleTitleChange(question._id, event)}/>
+                  <ContentEditable placeholder={"Saisir la question"} className="editable-question-title" html={question.title} onChange={(event) => this.props.handleTitleChange(question._id, event)}/>
                   {this.props.children}
                   </div>
                   <div className="col-2">

@@ -15,4 +15,12 @@ code {
 [contenteditable] {
   outline: 0px solid transparent;
   cursor: text;
+  white-space: pre-wrap;
+}
+[contenteditable]:empty::before {
+  content: attr(placeholder);
+  color: #aaa;
+}
+[contenteditable]:focus:empty::before {
+  display:none;
 }

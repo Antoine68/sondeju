@@ -31,7 +31,7 @@ export default class EditableOptionManager extends React.Component {
     }
     
     handleChange(idOption, event) {
-        let newOptionValue = event.target.value;
+        let newOptionValue = event.target.value.replace( /(<([^>]+)>)/ig, '');
         this.setState({
             options: this.state.options.map(option => (option._id === idOption ? {_id: option._id, value: newOptionValue} : option))
         }, () => this.props.handleOptionChange(this.props.question._id, this.state.options));
@@ -45,7 +45,7 @@ export default class EditableOptionManager extends React.Component {
                 return (
                     <div className="choice-list" key={index}>
                         {this.props.children}
-                        <label><ContentEditable html={option.value} onChange={(event) => this.handleChange(option._id, event)}/></label>
+                        <label><ContentEditable placeholder={"Choix"} html={option.value} onChange={(event) => this.handleChange(option._id, event)}/></label>
                         <button title="Supprimer" onClick={() => this.handleDeleteOption(option._id)}>X</button>
                     </div>
                 )
