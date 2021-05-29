@@ -13,10 +13,14 @@
 .round{
   border-radius: 3em;
 }
+.card-survey-category {
+  text-transform: capitalize;
+}
 .load-info {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 5px 0;
 }
 .lds-ellipsis {
   display: inline-block;

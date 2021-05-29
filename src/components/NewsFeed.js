@@ -76,9 +76,9 @@ export default class NewsFeed extends React.Component {
               </div>
             }
             endMessage={
-              <p style={{ textAlign: 'center' }}>
+              <div className="load-info">
                 <b>Vous êtes arrivé au bout !</b>
-              </p>
+              </div>
             }>
               <div class="row mw-100 m-0 p-0 mt-3">
                 {

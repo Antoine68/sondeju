@@ -16,6 +16,7 @@ import Register from "./pages/Register"
 
 import store from './store/index'
 import { Provider } from 'react-redux'
+import Survey from './pages/Survey';
 
 
 class App extends React.Component {
@@ -31,6 +32,7 @@ class App extends React.Component {
               <Route path="/connexion" component={Connection} />
               <Route path="/inscription" component={Register} />
               <Route path="/creer-sondage" component={CreateSurvey} />
+              <Route path="/sondage/:id" component={Survey} />
             </Fragment>
         </BrowserRouter>
       </Provider>

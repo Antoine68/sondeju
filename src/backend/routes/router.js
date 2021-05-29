@@ -17,6 +17,9 @@ module.exports = (app) => {
     // create a survey
     app.post('/api/survey', surveyController.create);
     
+    // get a survey
+    app.get('/api/survey/:id', surveyController.get);
+    
     // get surveys
     app.get('/api/surveys', surveyController.getAll);
     
