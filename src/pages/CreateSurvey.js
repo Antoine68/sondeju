@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import './../styles/CreateSurvey.css';
 
@@ -22,7 +22,8 @@ import EditableTextArea from "../components/EditableInput/EditableTextArea";
 import axios from "axios";
 import SelectCategory from "../components/SelectCategory";
 import { sanitize } from "../utils";
-import { Redirect } from 'react-router-dom';
+
+
 
 
 
@@ -32,7 +33,6 @@ export default class CreateSurvey extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      author: null,
       title: "",
       description : "",
       category: null,
@@ -50,17 +50,15 @@ export default class CreateSurvey extends React.Component {
     this.categories = [];
   }
   
-  loadCategories() {
-    
+  componentDidMount() {
+    this.addQuestion("short");
   }
   
   createQuestion(title, type, options, range, mandatory) {
     return {_id: createObjectID(), title: title, type: type, options: options, range:range, mandatory: mandatory}
   }
   
-  componentDidMount() {
-    this.addQuestion("short");
-  }
+  
   
   addQuestion(type) {
     this.setState({
@@ -157,7 +155,9 @@ export default class CreateSurvey extends React.Component {
   }
   
   onSubmit() {
-    axios.post('http://localhost:5000/api/survey', this.state)
+    let data = {...this.state, author: this.props.user._id}
+    console.log(this.props.user);
+    axios.post('http://localhost:5000/api/survey', data)
       .then(
         res => {
           console.log(res.status)
@@ -166,6 +166,7 @@ export default class CreateSurvey extends React.Component {
               this.setState({redirect : '1'})
               console.log(this.state.redirect)
           }else{
+            
           }
         }
       );
@@ -205,7 +206,7 @@ export default class CreateSurvey extends React.Component {
   render()  {
     if(this.state.redirect == '1'){
       return <Redirect to="/" />
-    }
+    }    
     return (
       <Layout>
         <nav aria-label="breadcrumb">

@@ -13,8 +13,8 @@ module.exports = {
             await Option.insertMany(question.options)
         });
         let questions = await Question.insertMany(survey.questions);
-        let author = await User.findOne({});
-        let newSurvey = await Survey.create({...survey, author:author});
+        //let author = await User.findOne({});
+        let newSurvey = await Survey.create({...survey});
         reply.code(200).send("okok");
       } catch (e) {
         reply.code(500).send(e);

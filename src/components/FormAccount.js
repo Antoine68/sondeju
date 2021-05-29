@@ -1,7 +1,6 @@
-import { connect } from "react-redux"
 import React from "react";
   
-  class FormAccount extends React.Component{
+export default class FormAccount extends React.Component{
   
     constructor (props){
       super(props)
@@ -83,9 +82,3 @@ import React from "react";
               
     }
   }
-  
-  const user = (state) => ({
-    user: state.user
-  });
-  
-  export default connect(user,null)(FormAccount)

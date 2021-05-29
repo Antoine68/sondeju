@@ -10,19 +10,18 @@ class ConnectionComponent extends React.Component {
 
     constructor(props) {
         super(props)
-    
         this.onChangePseudo = this.onChangePseudo.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     
         this.state = {
-        pseudo: '',
-        password: '',
-        name: '',
-        firstname: '',
-        mail:'',
-        age: '',
-        redirect:'0'
+            pseudo: '',
+            password: '',
+            name: '',
+            firstname: '',
+            mail:'',
+            age: '',
+            redirect:'0'
         }
     }
 
@@ -47,15 +46,17 @@ class ConnectionComponent extends React.Component {
                         document.getElementById("erreur").innerHTML = res.data
                     }else{
                         console.log(res.data)
-                        this.props.addConnection(res.data[0])
-                        this.setState({redirect : 1})
+                        let user = res.data;
+                        let userConnected = {...user[0], connected : true};
+                        this.props.addConnection(userConnected);
+                        this.setState({redirect : 1});
                     }
                 });
     }
 
   render()  {
     if(this.state.redirect == '1'){
-        return <Redirect to="/compte" />
+        return <Redirect to={this.props.redirect} />
     }
     return (
         <div>
@@ -114,8 +115,5 @@ class ConnectionComponent extends React.Component {
   }
 }
 
-const user = state => ({
-    user: state.user
-  });
-  
-  export default connect(user, { addConnection })(ConnectionComponent);
+
+export default connect(null, {addConnection})(ConnectionComponent);

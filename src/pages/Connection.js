@@ -8,7 +8,7 @@ export default class Connection  extends React.Component {
     render() {
       return (
           <Layout>
-              <ConnectionComponent></ConnectionComponent>
+              <ConnectionComponent redirect={this.props.location.state ? this.props.location.state.previousPage : "/compte"}></ConnectionComponent>
           </Layout>
         
       );

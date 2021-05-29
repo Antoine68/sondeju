@@ -16,6 +16,7 @@ import Register from "./pages/Register"
 import store from './store/index'
 import { Provider } from 'react-redux'
 import Survey from './pages/Survey';
+import RequireAuth from './middleware/RequireAuth';
 
 
 class App extends React.Component {
@@ -26,11 +27,11 @@ class App extends React.Component {
         <BrowserRouter>
             <Fragment>
               <Route exact path="/" component={Home} />
-              <Route path="/compte" component={Account} />
+              <Route path="/compte" component={RequireAuth(Account)} />
               <Route path="/connexion" component={Connection} />
               <Route path="/inscription" component={Register} />
-              <Route path="/creer-sondage" component={CreateSurvey} />
-              <Route path="/sondage/:id" component={Survey} />
+              <Route exact path="/creer-sondage" component={RequireAuth(CreateSurvey)} />
+              <Route path="/sondage/:id" component={RequireAuth(Survey)} />
             </Fragment>
         </BrowserRouter>
       </Provider>

@@ -27,10 +27,6 @@ class AccountContent extends React.Component {
   }
 
   render()  {
-    const user = this.props.user;
-    if (user.connected == false){
-      return <Redirect to="/connexion" />
-    }
     return (
       <div>
         <nav aria-label="breadcrumb">
@@ -44,7 +40,7 @@ class AccountContent extends React.Component {
 
         <h3 class="text-left mt-4 mb-0 pb-0 ml-2">Mes informations personnelles</h3>
         <hr></hr>
-        <FormAccount></FormAccount>
+        <FormAccount user={this.props.user}></FormAccount>
         <div class="text-center">
           <Link to="/compte">
             <button type="button" class="btn btn-outline-info button-account" data-mdb-ripple-color="dark">
@@ -98,8 +94,4 @@ class AccountContent extends React.Component {
   }
 }
 
-const user = (state) => ({
-  user: state.user
-});
-
-export default connect(user,{ addConnection })(AccountContent)
+export default connect(null,{ addConnection })(AccountContent)

@@ -1,8 +1,5 @@
 import './../styles/NewsFeed.css';
 import 'react-dropdown/style.css';
-import { Menu, Dropdown } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
-import { Pagination } from 'antd';
 import CardSurvey from "./CardSurvey";
 
 
@@ -21,7 +18,7 @@ export default class NewsFeed extends React.Component {
       hasMore: true,
       surveys: []
     }
-    this.size = 3;
+    this.size = 12;
   }
   
   componentDidMount() {
