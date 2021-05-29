@@ -38,12 +38,14 @@ module.exports = {
     }
   },
   
-  getPaginate: async (request, reply) => {
+  //#get all surveys
+  getAll: async (request, reply) => {
     try {
-        const resultsPerPage = 15;
-        const page = request.params.page-1;
-        const surveys = await Survey.find({})
-            .populate({path:"category questions"})
+        const resultsPerPage = Number(request.query.size);
+        const page = Number(request.query.page)-1;
+        const params = request.query.category ? {category: request.query.category} : {}
+        const surveys = await Survey.find(params)
+            .populate({path:"category"})
             .sort({created_at:-1})
             .limit(resultsPerPage)
             .skip(resultsPerPage * page);

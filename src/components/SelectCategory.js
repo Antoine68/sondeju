@@ -25,7 +25,7 @@ export default class SelectCategory extends React.Component {
   render()  {
     return (
         <Select className="select-category" onChange={(value) => this.props.handleChange(value)} defaultValue={this.props.defaultValue}>
-                <Option value={null}>catégorie du sondage</Option>
+                <Option value={null}>{this.props.firstValueName}</Option>
                 {
                   this.state.categories.map((category, index) => {
                     return (

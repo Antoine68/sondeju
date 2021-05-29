@@ -214,7 +214,7 @@ export default class CreateSurvey extends React.Component {
           <ContentEditable placeholder={"Saisir le titre du sondage"} className="title-editable" html={this.state.title} onChange={(event) => this.handleTitleChange(event)}/>
           <ContentEditable placeholder={"Entrer une description du sondage..."} className="description-editable" html={this.state.description} onChange={(event) => this.handleDescriptionChange(event)}/>            
           <div className="text-center mb-2">
-              <SelectCategory handleChange={this.handleCategoryChange.bind(this)} defaultValue={this.state.category} />
+              <SelectCategory  handleChange={this.handleCategoryChange.bind(this)} firstValueName={"Catégorie du sondage"} defaultValue={this.state.category} />
             </div>
             <div className="text-center">
               <Dropdown overlay={this.menu.bind(this)} trigger={['click']}>
