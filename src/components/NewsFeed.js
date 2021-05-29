@@ -15,6 +15,7 @@ export default class NewsFeed extends React.Component {
     super(props);
     this.state = {
       category: null,
+      hasCategoryChange: false,
       hasMore: true,
       surveys: []
     }
@@ -25,6 +26,13 @@ export default class NewsFeed extends React.Component {
     this.loadSurveys();
   }
   
+  shouldComponentUpdate(nextProps, nextState) { 
+    if (nextState.hasCategoryChange && nextState.surveys.length === 0) { 
+      return false;
+    }
+    return true;
+  }
+  
   loadSurveys() {
     axios.get('http://localhost:5000/api/surveys?category='+ 
               (this.state.category ? this.state.category : '') +
@@ -32,7 +40,8 @@ export default class NewsFeed extends React.Component {
               '&lastId='+ (this.state.surveys.length > 0 ? this.state.surveys[this.state.surveys.length-1]._id : '') )
       .then(res => {
         const surveys = res.data;
-        this.setState({ 
+        this.setState({
+          hasCategoryChange: false,
           surveys: [...this.state.surveys, ...surveys], 
           hasMore: (surveys.length === this.size)
         });
@@ -45,6 +54,7 @@ export default class NewsFeed extends React.Component {
   
   handleCategoryChange(value) {
     this.setState({
+      hasCategoryChange: true,
       category: value,
       surveys: [],
     }, () => this.loadSurveys());
