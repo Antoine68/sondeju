@@ -2,6 +2,7 @@ import './../styles/Account.css';
 import { Link} from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { connect } from "react-redux"
+import {addConnection} from '../store/actions'
 
 import React from "react";
 import FormAccount from './FormAccount';
@@ -10,6 +11,19 @@ class AccountContent extends React.Component {
 
   constructor (props){
     super(props)
+    this.disconnect = this.disconnect.bind(this);
+  }
+
+  disconnect(){
+    const userStore = {
+      connected : false,
+      pseudo: '',
+      name: '',
+      firstname: '',
+      mail : '',
+      age: ''
+  }
+  this.props.addConnection(userStore)
   }
 
   render()  {
@@ -73,6 +87,12 @@ class AccountContent extends React.Component {
             </div>
           </div>
         </div>
+        <div class="text-center">
+          <button type="button" onClick={this.disconnect} class="btn btn-outline-danger button-disconnect mt-5 mb-5" data-mdb-ripple-color="dark">
+          <i class="fas fa-times mr-1"></i>
+                Se déconnecter
+          </button>
+        </div>
       </div>
     );
   }
@@ -82,4 +102,4 @@ const user = (state) => ({
   user: state.user
 });
 
-export default connect(user,null)(AccountContent)
+export default connect(user,{ addConnection })(AccountContent)

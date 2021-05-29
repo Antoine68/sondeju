@@ -5,3 +5,20 @@
 .test {
     background-color: red;
 }
+
+.button-disconnect {
+    color: #ca0909 !important;
+    background-color: white;
+    border-width: 1px !important;
+    border-color: #ca0909 !important;
+    border-radius: 3em !important;
+}
+
+.button-disconnect:hover {
+    font-weight: bold;
+    color: #ca0909 !important;
+    background-color: white;
+    border-width: 1px !important;
+    border-color: #ca0909 !important;
+    border-radius: 3em !important;
+}
