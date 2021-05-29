@@ -9,7 +9,6 @@ import './styles/App.css';
 
 import Account from "./pages/Account";
 import Home from "./pages/Home";
-import Test from "./pages/Test";
 import CreateSurvey from "./pages/CreateSurvey";
 import Connection from "./pages/Connection"
 import Register from "./pages/Register"
@@ -27,7 +26,6 @@ class App extends React.Component {
         <BrowserRouter>
             <Fragment>
               <Route exact path="/" component={Home} />
-              <Route path="/tableau-de-jp-baur" component={Test} />
               <Route path="/compte" component={Account} />
               <Route path="/connexion" component={Connection} />
               <Route path="/inscription" component={Register} />

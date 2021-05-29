@@ -8,23 +8,17 @@ module.exports = {
   //# create survey
   create: async (request, reply) => {
     try {
-        try {
-            let survey = request.body;
-            survey.questions.map(async(question) => {
-                await Option.insertMany(question.options)
-            });
-            let questions = await Question.insertMany(survey.questions);
-            let author = await User.findOne({});
-            let newSurvey = await Survey.create({...survey, author:author});
-          } catch (e) {
-            console.log(e)
-            reply.code(500).send(e);
-          }
-
-    } catch (e) {
-      console.log(e)
-      reply.code(500).send(e);
-    }
+        let survey = request.body;
+        survey.questions.map(async(question) => {
+            await Option.insertMany(question.options)
+        });
+        let questions = await Question.insertMany(survey.questions);
+        let author = await User.findOne({});
+        let newSurvey = await Survey.create({...survey, author:author});
+        reply.code(200).send("okok");
+      } catch (e) {
+        reply.code(500).send(e);
+      }
   },
   
   //#get survey

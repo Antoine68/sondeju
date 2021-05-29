@@ -22,6 +22,7 @@ import EditableTextArea from "../components/EditableInput/EditableTextArea";
 import axios from "axios";
 import SelectCategory from "../components/SelectCategory";
 import { sanitize } from "../utils";
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -35,6 +36,7 @@ export default class CreateSurvey extends React.Component {
       title: "",
       description : "",
       category: null,
+      redirect:'0',
       questions : []
     }
     this.typeConverter = {
@@ -161,8 +163,9 @@ export default class CreateSurvey extends React.Component {
           console.log(res.status)
           if (res.status == 200){
               console.log(res.data)
+              this.setState({redirect : '1'})
+              console.log(this.state.redirect)
           }else{
-            
           }
         }
       );
@@ -200,6 +203,9 @@ export default class CreateSurvey extends React.Component {
   
   
   render()  {
+    if(this.state.redirect == '1'){
+      return <Redirect to="/" />
+    }
     return (
       <Layout>
         <nav aria-label="breadcrumb">

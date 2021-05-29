@@ -12,7 +12,6 @@ export default  class Account extends React.Component {
     return (
       <Layout>
         <AccountContent></AccountContent>
-        <Link to="/tableau-de-jp-baur">page surprise</Link>
       </Layout>
       
     );

@@ -22,7 +22,7 @@ class AccountContent extends React.Component {
       firstname: '',
       mail : '',
       age: ''
-  }
+    }
   this.props.addConnection(userStore)
   }
 
