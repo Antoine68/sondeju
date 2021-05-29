@@ -12,17 +12,12 @@ import SelectCategory from './SelectCategory';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 
-function onShowSizeChange(current, pageSize) {
-  console.log(current, pageSize);
-}
-
 export default class NewsFeed extends React.Component {
   
   constructor(props) {
     super(props);
     this.state = {
       category: null,
-      page: 1,
       hasMore: true,
       surveys: []
     }
@@ -34,7 +29,10 @@ export default class NewsFeed extends React.Component {
   }
   
   loadSurveys() {
-    axios.get('http://localhost:5000/api/surveys?category='+ (this.state.category ? this.state.category : '') +'&page='+this.state.page+'&size='+this.size)
+    axios.get('http://localhost:5000/api/surveys?category='+ 
+              (this.state.category ? this.state.category : '') +
+              '&size='+this.size+
+              '&lastId='+ (this.state.surveys.length > 0 ? this.state.surveys[this.state.surveys.length-1]._id : '') )
       .then(res => {
         const surveys = res.data;
         this.setState({ 
@@ -45,15 +43,11 @@ export default class NewsFeed extends React.Component {
   }
   
   handeNextPage() {
-    console.log(this.state.page);
-    this.setState({
-      page: this.state.page+1
-    }, () => this.loadSurveys());
+    this.loadSurveys();
   }
   
   handleCategoryChange(value) {
     this.setState({
-      page:1,
       category: value,
       surveys: [],
     }, () => this.loadSurveys());
