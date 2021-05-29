@@ -4,10 +4,9 @@ const usersController = require("../controllers/usersController");
 
 module.exports = (app) => {
     // create a user
-    console.log("rtoute")
     app.post('/api/user', usersController.create);
     // get a user
-    app.get('/api/user/:pseudo', usersController.get);
+    app.get('/api/connection/:pseudo/:password', usersController.get);
     
     // update a user
     app.put('/api/user/:pseudo', usersController.update);

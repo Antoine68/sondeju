@@ -6,10 +6,7 @@ module.exports = {
     try {
       const user = request.body;
       const pseudo = request.body.pseudo;
-      console.log(request.body.pseudo)
       const pseudotrouver = await User.find({ pseudo: pseudo }).exec();
-      console.log(pseudotrouver)
-      console.log(pseudotrouver.length)
       if (pseudotrouver.length == 0){
         const newUser = await User.create(user);
         reply.code(201).send(newUser);
@@ -26,9 +23,19 @@ module.exports = {
   //#get user
   get: async (request, reply) => {
     try {
-      const userId = request.params.id;
-      const user = await Note.findById(userId);
-      reply.code(200).send(user);
+      const userPseudo = request.params.pseudo;
+      console.log(request.params)
+      const user = await User.find({ pseudo: userPseudo }).exec();
+      console.log(user)
+      if (user.length == 0){
+        reply.code(200).send("Votre pseudo ou mot de passe est incorrect.");
+      }
+      console.log(request.params.password)
+      console.log(user[0].password)
+      if (request.params.password != user[0].password){
+        reply.code(200).send("Votre pseudo ou mot de passe est incorrect.");
+      }
+      reply.code(201).send(user);
     } catch (e) {
       reply.code(500).send(e);
     }

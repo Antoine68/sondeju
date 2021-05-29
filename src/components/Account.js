@@ -10,11 +10,11 @@ class AccountContent extends React.Component {
 
   constructor (props){
     super(props)
-    const user = this.props.user;
   }
 
   render()  {
-    if (!user.connected){
+    const user = this.props.user;
+    if (user.connected == false){
       return <Redirect to="/connexion" />
     }
     return (

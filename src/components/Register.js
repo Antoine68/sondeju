@@ -66,7 +66,10 @@ class RegisterComponent extends React.Component {
         const userObject = {
             pseudo: this.state.pseudo,
             age: this.state.age,
-            password: this.state.password
+            password: this.state.password,
+            name: '',
+            firstname: '',
+            mail:''
         };
 
         axios.post('http://localhost:5000/api/user', userObject)
