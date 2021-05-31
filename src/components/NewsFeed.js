@@ -69,7 +69,7 @@ export default class NewsFeed extends React.Component {
           <div class="col-lg-4 col-md-12 text-center mt-3">
             <SelectCategory handleChange={this.handleCategoryChange.bind(this)} firstValueName={"Toutes les catégories"} defaultValue={this.state.category} />
           </div>
-          <div class="col-lg-3"></div>
+          <div class="col-lg-3"></div> 
         </div>
         
         {
