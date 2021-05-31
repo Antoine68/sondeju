@@ -52,6 +52,16 @@ module.exports = {
     }
   },
   
+  getRandomId: async (request, reply) => {
+    try {
+      let count = await Survey.countDocuments();
+      let random = Math.floor(Math.random() * count);
+      let survey = await Survey.findOne({}).skip(random);
+      reply.code(200).send(survey._id);
+    } catch (e) {
+        reply.code(500).send(e);
+    }
+  }
   
   
 };

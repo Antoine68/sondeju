@@ -20,6 +20,8 @@ module.exports = (app) => {
     // get a survey
     app.get('/api/survey/:id', surveyController.get);
     
+    app.get('/api/random/survey', surveyController.getRandomId);
+    
     // get surveys
     app.get('/api/surveys', surveyController.getAll);
     

@@ -10,7 +10,7 @@ export default function(ComposedComponent) {
         if(this.props.user.connected){
             return <ComposedComponent {...this.props}/>
         } else {
-            return <Redirect  to={{pathname:"/connexion", state: {previousPage: this.props.match.path}}}/>
+            return <Redirect  to={{pathname:"/connexion", state: {previousPage: this.props.match.url}}}/>
         }
     }
 

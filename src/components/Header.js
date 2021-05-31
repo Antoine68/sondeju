@@ -47,7 +47,7 @@ export default class Header extends React.Component {
               
               <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center">
               <i class="fas fa-random blue-color fa-1x mr-2" aria-hidden="true"></i>
-                <div class="text color-grey hover-texte">Sondage au hasard</div>
+              <Link to="/sondage-aleatoire"><div class="text color-grey hover-texte">Sondage au hasard</div></Link>
               </a>
 
             </div>
