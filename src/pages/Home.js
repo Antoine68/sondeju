@@ -1,4 +1,5 @@
 
+import { BackTop, Popover } from "antd";
 import React from "react";
 
 import Layout from "../components/Layout";
@@ -10,6 +11,10 @@ export default class Home extends React.Component {
       return (
           <Layout>
             <NewsFeed></NewsFeed>
+            
+            <BackTop visibilityHeight={1600}>
+              <div title={"Cliquer pour remonter"} className={"totop btn bg-button"}><i class="fas fa-angle-up"></i></div>
+            </BackTop>
           </Layout>
       );
     }

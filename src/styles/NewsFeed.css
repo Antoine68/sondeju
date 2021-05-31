@@ -77,3 +77,16 @@
     transform: translate(24px, 0);
   }
 }
+.totop {
+  background-color: #0F056B;
+  color: white !important;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 1024px) {
+  .totop{
+    display: none !important;
+  }
+}

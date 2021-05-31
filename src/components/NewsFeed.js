@@ -7,6 +7,9 @@ import React from "react";
 import axios from 'axios';
 import SelectCategory from './SelectCategory';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { Skeleton } from 'antd';
+import { Fragment } from 'react';
+import SkeletonCard from './SkeletonCard';
 
 
 export default class NewsFeed extends React.Component {
@@ -16,6 +19,7 @@ export default class NewsFeed extends React.Component {
     this.state = {
       category: null,
       hasMore: true,
+      isLoading: true,
       surveys: []
     }
     this.size = 12;
@@ -35,7 +39,8 @@ export default class NewsFeed extends React.Component {
         let surveys = res.data;
         this.setState({
           surveys: [...this.state.surveys, ...surveys], 
-          hasMore: (surveys.length === this.size)
+          hasMore: (surveys.length === this.size),
+          isLoading: false,
         });
     })
   }
@@ -47,12 +52,14 @@ export default class NewsFeed extends React.Component {
   handleCategoryChange(value) {
     this.setState({
       hasCategoryChange: true,
+      isLoading: true,
       category: value,
       surveys: [],
     }, () => this.loadSurveys(true));
   }
   
   render()  {
+
     return (
       <div>
         <div class="row mw-100 m-0 p-0 mt-4">
@@ -65,30 +72,46 @@ export default class NewsFeed extends React.Component {
           <div class="col-lg-3"></div>
         </div>
         
-          <InfiniteScroll 
-            dataLength={this.state.surveys.length} 
-            next={this.handeNextPage.bind(this)}
-            hasMore={this.state.hasMore}
-            loader={
-              <div className="load-info">
-                Chargement des sondages<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-              </div>
+        {
+          (() => {
+            if(this.state.surveys.length === 0 && this.state.isLoading) {
+              return(
+                  <div class="row mw-100 m-0 p-0 mt-3">
+                    <SkeletonCard /><SkeletonCard /><SkeletonCard /> 
+                    <SkeletonCard /><SkeletonCard /><SkeletonCard /> 
+                    <SkeletonCard /><SkeletonCard /><SkeletonCard />  
+                  </div>
+              );
             }
-            endMessage={
-              <div className="load-info">
-                <b>Vous êtes arrivé au bout !</b>
-              </div>
-            }>
-              <div class="row mw-100 m-0 p-0 mt-3">
-                {
-                  this.state.surveys.map((survey, index) => {
-                    return <CardSurvey key={index} survey={survey}/>
-                  })
-                }
-              </div>
-          </InfiniteScroll>
-
+            return (
+              <InfiniteScroll 
+                  dataLength={this.state.surveys.length} 
+                  next={this.handeNextPage.bind(this)}
+                  hasMore={this.state.hasMore}
+                  loader={
+                    <div className="load-info">
+                      Chargement des sondages<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                    </div>
+                  }
+                  endMessage={
+                    <div className="load-info">
+                      <b>Vous êtes arrivé au bout !</b>
+                    </div>
+                  }>
+                    <div class="row mw-100 m-0 p-0 mt-3">
+                      {
+                        this.state.surveys.map((survey, index) => {
+                          return <CardSurvey key={index} survey={survey}/>
+                        })
+                      }
+                    </div>
+                </InfiniteScroll>
+            );
+          })()
+        }
+          
       </div>
+      
     );
   }
 }

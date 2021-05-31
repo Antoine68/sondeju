@@ -7,6 +7,8 @@ import RegisterComponent from "../components/Register";
 import { withRouter } from "react-router";
 import axios from "axios";
 import Breadcrumb from "../components/Breadcrumb";
+import { Skeleton } from "antd";
+import Survey from "../components/Survey";
 
 class SurveyPage extends React.Component {
     
@@ -14,7 +16,6 @@ class SurveyPage extends React.Component {
         super(props);
         this.state = {
             survey: null,
-            isLoading: true
         }
     }
     
@@ -27,20 +28,38 @@ class SurveyPage extends React.Component {
         axios.get('http://localhost:5000/api/survey/'+id)
         .then(res => {
             let survey = res.data;
-            console.log(survey);
             this.setState({ 
                 survey: survey,
-                isLoading: false
             });
         })
     }
     
     render() {
-      return (
+        
+        if(!this.state.survey) {
+            return (
+                <Layout>
+                    <Breadcrumb 
+                        actual={"Sondage"}
+                        links={[{url: "/", name: "Accueil"}]} />
+                    <Skeleton active />
+                    <Skeleton active />
+                    <Skeleton active />
+                    <Skeleton active />
+                
+                
+                </Layout>
+            );
+        }
+        
+        return (
           <Layout>
-              <Breadcrumb 
+            <Breadcrumb 
                 actual={"Sondage"}
                 links={[{url: "/", name: "Accueil"}]} />
+            
+            <Survey survey={this.state.survey} />
+                
           </Layout>
       );
     }
