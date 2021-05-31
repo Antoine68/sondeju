@@ -29,13 +29,7 @@ class AccountContent extends React.Component {
   render()  {
     return (
       <div>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb bg-white">
-            <li class="breadcrumb-item"><Link to="/" class="blue-color font-weight-normal">Accueil</Link></li>
-            <li class="breadcrumb-item active" aria-current="page">Mon compte</li>
-          </ol>
-        </nav>
-
+        
         <h1 class="text-center font-weight-bold blue-color">Mon compte</h1>
 
         <h3 class="text-left mt-4 mb-0 pb-0 ml-2">Mes informations personnelles</h3>

@@ -6,13 +6,15 @@ import RegisterComponent from "../components/Register";
 
 import { withRouter } from "react-router";
 import axios from "axios";
+import Breadcrumb from "../components/Breadcrumb";
 
-class Survey extends React.Component {
+class SurveyPage extends React.Component {
     
     constructor(props) {
         super(props);
         this.state = {
-            survey: null
+            survey: null,
+            isLoading: true
         }
     }
     
@@ -28,6 +30,7 @@ class Survey extends React.Component {
             console.log(survey);
             this.setState({ 
                 survey: survey,
+                isLoading: false
             });
         })
     }
@@ -35,10 +38,12 @@ class Survey extends React.Component {
     render() {
       return (
           <Layout>
-              <div>a</div>
+              <Breadcrumb 
+                actual={"Sondage"}
+                links={[{url: "/", name: "Accueil"}]} />
           </Layout>
       );
     }
   }
 
-export default withRouter(Survey);
+export default withRouter(SurveyPage);

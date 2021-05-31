@@ -22,6 +22,7 @@ import EditableTextArea from "../components/EditableInput/EditableTextArea";
 import axios from "axios";
 import SelectCategory from "../components/SelectCategory";
 import { sanitize } from "../utils";
+import Breadcrumb from "../components/Breadcrumb";
 
 
 
@@ -209,12 +210,10 @@ export default class CreateSurvey extends React.Component {
     }    
     return (
       <Layout>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb bg-white">
-            <li class="breadcrumb-item"><Link to="/" class="blue-color font-weight-normal">Accueil</Link></li>
-            <li class="breadcrumb-item active" aria-current="page">Créer un sondage</li>
-          </ol>
-        </nav>
+        <Breadcrumb 
+            actual={"Créer un sondage"}
+            links={[{url: "/", name: "Accueil"}]} />
+        
         <h1 class="text-center font-weight-bold blue-color">Créer un sondage</h1>
         
         <section class="section-sondage mb-5 mt-5">

@@ -60,13 +60,6 @@ class ConnectionComponent extends React.Component {
     }
     return (
         <div>
-            <nav aria-label="breadcrumb">
-            <ol class="breadcrumb bg-white">
-                <li class="breadcrumb-item"><Link to="/" class="blue-color font-weight-normal">Accueil</Link></li>
-                <li class="breadcrumb-item active" aria-current="page">connexion</li>
-            </ol>
-            </nav>
-
             <h1 class="text-center font-weight-bold blue-color">Connexion</h1>
 
             <div class="container mt-5 mb-5">

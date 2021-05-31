@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from "react-redux"
 import {addConnection} from '../store/actions'
 
+
 class RegisterComponent extends React.Component {
 
     constructor(props) {
@@ -100,15 +101,7 @@ class RegisterComponent extends React.Component {
             return <Redirect to="/compte" />
         }
         return (
-            <div>
-                <nav aria-label="breadcrumb">
-                <ol class="breadcrumb bg-white">
-                    <li class="breadcrumb-item"><Link to="/" class="blue-color font-weight-normal">Accueil</Link></li>
-                    <li class="breadcrumb-item"><Link to="/connexion" class="blue-color font-weight-normal">connexion</Link></li>
-                    <li class="breadcrumb-item active" aria-current="page">inscription</li>
-                </ol>
-                </nav>
-
+            <div>              
                 <h1 class="text-center font-weight-bold blue-color">Inscription</h1>
 
                 <div class="container mt-5 mb-5">
