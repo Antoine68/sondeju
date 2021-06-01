@@ -8,8 +8,11 @@ export default class QInput extends React.Component {
      
 
     render()  {
+      let {question, response} = this.props;
       return (
-        <Input placeholder="Saisir une réponse..."/>
+        <div className="answer-container">
+          <Input placeholder="Saisir une réponse..." value={response.value}/>
+        </div>
       );
     }
 }

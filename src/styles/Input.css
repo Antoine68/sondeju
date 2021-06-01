@@ -1,0 +1,14 @@
+.answer-container, .answer-container-column{
+    display: flex;
+    justify-content: center;
+}
+.answer-container-column {
+    flex-direction: column;
+}
+.answer-container-column label {
+    padding-left: 10px;
+    cursor: pointer;
+}
+.answer-container-column input {
+    cursor: pointer;
+}

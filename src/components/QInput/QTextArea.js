@@ -8,8 +8,11 @@ export default class QTextArea extends React.Component {
      
     
     render()  {
+      let {question, response} = this.props;
       return (
-        <TextArea placeholder="Saisir une réponse..." />
+        <div className="answer-container">
+          <TextArea placeholder="Saisir une réponse..." value={response.value}/>
+        </div>
       );
     }
 }

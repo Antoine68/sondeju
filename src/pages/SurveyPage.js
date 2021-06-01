@@ -45,9 +45,7 @@ class SurveyPage extends React.Component {
                     <Skeleton active />
                     <Skeleton active />
                     <Skeleton active />
-                    <Skeleton active />
-                
-                
+                    <Skeleton active />                
                 </Layout>
             );
         }
