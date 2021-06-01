@@ -31,19 +31,22 @@ export default class Question extends React.Component {
   
   onRangeChange(event) {
     let value = event.target.value;
-    this.props.onChange(this.props.question._id, {...this.props.response, rangeValue: value});
+    if(Number(value) < this.props.question.range.min) value = this.props.question.range.min;
+    if(Number(value) > this.props.question.range.max) value = this.props.question.range.max;
+    this.props.onChange(this.props.question._id, {...this.props.response, rangeValue: Math.round(value)});
   }
   
   onMultipleOptionChange(event) {
     let value = event.target.value;
-    console.log(event);
-    //this.props.onChange(this.props.question._id, {...this.props.response, rangeValue: value});
+    let actualOptions = this.props.response.options;
+    let newOptions = actualOptions.filter(option => option !== value);
+    if(newOptions.length === actualOptions.length) newOptions.push(value);
+    this.props.onChange(this.props.question._id, {...this.props.response, options: newOptions});
   }
   
   onUniqueOptionChange(event) {
     let value = event.target.value;
-    console.log(event);
-    //this.props.onChange(this.props.question._id, {...this.props.response, rangeValue: value});
+    this.props.onChange(this.props.question._id, {...this.props.response, options: [value]});
   }
   
   render()  {

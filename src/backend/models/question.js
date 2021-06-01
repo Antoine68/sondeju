@@ -18,6 +18,13 @@ questionSchema.virtual('survey', {
     localField: '_id',
     foreignField: 'questions',
     justOne: true
+});
+
+questionSchema.virtual('questionResponses', {
+  ref: 'QuestionResponse',
+  localField: '_id',
+  foreignField: 'question',
+  justOne: false
 })
 
 const Question = mongoose.model('Question', questionSchema);

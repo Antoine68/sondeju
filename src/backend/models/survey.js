@@ -9,6 +9,13 @@ const surveySchema = new Schema({
   questions: [{type: Schema.Types.ObjectId, required: true, ref:'Question'}],
 },{timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 
+surveySchema.virtual('surveyResponse', {
+  ref: 'SurveyResponse',
+  localField: '_id',
+  foreignField: 'survey',
+  justOne: false
+})
+
 const Survey = mongoose.model('Survey', surveySchema);
 
 module.exports = Survey;

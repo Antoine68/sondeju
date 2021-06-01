@@ -8,6 +8,7 @@ import Question from './Question';
 import { breakLineToBr } from '../utils';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import { createObjectID } from 'mongo-object-reader';
+import axios from 'axios';
 
 export default class Survey extends React.Component {
     
@@ -34,14 +35,32 @@ export default class Survey extends React.Component {
     }
     
     onResponseChange(idQuestion, response) {
-        console.log(response);
         let index = this.state.responses.findIndex((response) => response.question === idQuestion);
         let responses = this.state.responses.slice();
         responses[index] = response;
         this.setState({
             responses: responses
         });
-    }        
+    }
+    
+    onSubmit() {
+        let data = {...this.state, survey: this.props.survey._id}
+        axios.post('http://localhost:5000/api/survey/response', data)
+          .then(
+            res => {
+              console.log(res.status)
+              if (res.status == 200){
+                  /*console.log(res.data)
+                  this.setState({redirect : '1'})
+                  console.log(this.state.redirect)*/
+              }else{
+                
+              }
+            }
+          );
+      }
+    
+            
     
     
   render()  {
@@ -69,7 +88,7 @@ export default class Survey extends React.Component {
                     })
                 }
             </section>
-            <button type="button" class="btn btn-outline-info button-account" data-mdb-ripple-color="dark">
+            <button onClick={() => {this.onSubmit()}} type="button" class="btn btn-outline-info button-account" data-mdb-ripple-color="dark">
                   <i class="fas fa-share-square mr-1"></i>
                     Envoyer les réponses
             </button>

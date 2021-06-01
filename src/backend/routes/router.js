@@ -1,4 +1,5 @@
 const categoryController = require("../controllers/categoryController");
+const responseController = require("../controllers/responseController");
 const surveyController = require("../controllers/surveyController");
 const usersController = require("../controllers/usersController");
 
@@ -31,4 +32,7 @@ module.exports = (app) => {
     
     //get all categories
     app.get('/api/categories', categoryController.getAll);
+    
+    //response
+    app.post('/api/survey/response', responseController.create);
   };

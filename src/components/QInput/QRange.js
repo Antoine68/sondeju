@@ -17,7 +17,7 @@ export default class QRange extends React.Component {
                   </div>
                   <div className="col-6">
                     <Input type="range" onChange={(event) => {this.props.onRangeChange(event)}} value={response.rangeValue} min={question.range.min} max={question.range.max} step={1}/>
-                    <label>{response.rangeValue}</label>
+                    <label>Réponse : {response.rangeValue}</label>
                   </div>
                   <div className="col-3">
                     <label>{question.range.max}</label>                  
