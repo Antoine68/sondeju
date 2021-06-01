@@ -11,7 +11,7 @@ export default class QInput extends React.Component {
       let {question, response} = this.props;
       return (
         <div className="answer-container">
-          <Input placeholder="Saisir une réponse..." value={response.value}/>
+          <Input placeholder="Saisir une réponse..." value={response.value} onChange={(event) => {this.props.onTextChange(event)}}/>
         </div>
       );
     }

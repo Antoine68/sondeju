@@ -11,7 +11,7 @@ export default class QTextArea extends React.Component {
       let {question, response} = this.props;
       return (
         <div className="answer-container">
-          <TextArea placeholder="Saisir une réponse..." value={response.value}/>
+          <TextArea placeholder="Saisir une réponse..." value={response.value} onChange={(event) => {this.props.onTextChange(event)}}/>
         </div>
       );
     }

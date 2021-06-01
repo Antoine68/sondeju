@@ -4,12 +4,6 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { Skeleton } from 'antd';
 import { Fragment } from 'react';
-import QInput from './QInput/QInput';
-import QTextArea from './QInput/QTextArea';
-import QRadio from './QInput/QRadio';
-import QCheckbox from './QInput/QCheckbox';
-import QSelect from './QInput/QSelect';
-import QRange from './QInput/QRange';
 import Question from './Question';
 import { breakLineToBr } from '../utils';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
@@ -21,14 +15,6 @@ export default class Survey extends React.Component {
         super(props);
         this.state = {
             responses:this.createAllResponses()
-        }
-        this.typeConverter = {
-            "short" : {component: <QInput/>},
-            "long" : {component: <QTextArea/>},
-            "multiple" : {component:<QRadio/>},
-            "unique": {component:<QCheckbox/>},
-            "select": {component:<QSelect/>},
-            "range": { component:<QRange/>}      
         }
     }
     
@@ -46,7 +32,16 @@ export default class Survey extends React.Component {
     getResponseOfQuestion(idQuestion) {
         return this.state.responses.find(response => response.question === idQuestion);
     }
-        
+    
+    onResponseChange(idQuestion, response) {
+        console.log(response);
+        let index = this.state.responses.findIndex((response) => response.question === idQuestion);
+        let responses = this.state.responses.slice();
+        responses[index] = response;
+        this.setState({
+            responses: responses
+        });
+    }        
     
     
   render()  {
@@ -64,14 +59,12 @@ export default class Survey extends React.Component {
                 {
                     survey.questions.map((question, index) => {
                         return (
-                            <Question key={index} question={question} index={index}>
-                                {React.cloneElement(this.typeConverter[question.type].component, 
-                                    {
-                                        question : question,
-                                        response: this.getResponseOfQuestion(question._id) 
-                                    }
-                                )}                
-                            </Question>
+                            <Question key={index} 
+                                question={question} 
+                                response={this.getResponseOfQuestion(question._id)} 
+                                index={index}
+                                onChange={this.onResponseChange.bind(this)}
+                            />
                         );
                     })
                 }

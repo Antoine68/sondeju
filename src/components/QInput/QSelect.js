@@ -10,7 +10,7 @@ export default class QSelect extends React.Component {
       let {question, response} = this.props;
       return (
         <div className="answer-container">
-          <select name={question._id} defaultValue={response.options.length === 0 ? null : response.options[0]}>
+          <select onChange={(event) => {this.props.onUniqueOptionChange(event)}} name={question._id} defaultValue={response.options.length === 0 ? null : response.options[0]}>
               <option value={null}>Choisir une option</option>
               {
                 question.options.map((option, index) => {
