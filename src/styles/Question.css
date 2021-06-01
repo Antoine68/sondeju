@@ -1,0 +1,26 @@
+.question-counter {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 4px 12px;
+    border: 1px black solid;
+    border-radius: 50%;
+}
+.container-question:focus-within {
+    border-left: 10px #0F056B  solid;
+    transition: 0.3s;
+}
+.container-question {
+    margin-bottom: 15px;
+}
+.question-title {
+    text-align: center;
+    font-weight: bold;
+    font-size:  1.8em;
+    border-bottom: 2px #0F056B solid;
+    margin-bottom: 10px;
+}
+.span-mandatory {
+    color: #881c27 !important;
+}
+
