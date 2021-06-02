@@ -18,6 +18,7 @@ import { Provider } from 'react-redux'
 import SurveyPage from './pages/SurveyPage';
 import RequireAuth from './middleware/RequireAuth';
 import RandomSurvey from './pages/RandomSurvey';
+import ResponseSurvey from './pages/ResponseSurvey';
 
 
 class App extends React.Component {
@@ -34,6 +35,7 @@ class App extends React.Component {
               <Route exact path="/creer-sondage" component={RequireAuth(CreateSurvey)} />
               <Route path="/sondage/:id" component={SurveyPage} />
               <Route path="/sondage-aleatoire" component={RandomSurvey} />
+              <Route path="/reponse/:id" component={ResponseSurvey} />
             </Fragment>
         </BrowserRouter>
       </Provider>

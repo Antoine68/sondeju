@@ -1,4 +1,5 @@
 import './../styles/NewsFeed.css';
+import './../styles/Survey.css'
 
 import React from "react";
 import { Link } from 'react-router-dom';
@@ -9,12 +10,14 @@ import { breakLineToBr } from '../utils';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import { createObjectID } from 'mongo-object-reader';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 export default class Survey extends React.Component {
     
     constructor(props) {
         super(props);
         this.state = {
+            redirect : 0,
             responses:this.createAllResponses()
         }
     }
@@ -50,9 +53,9 @@ export default class Survey extends React.Component {
             res => {
               console.log(res.status)
               if (res.status == 200){
-                  /*console.log(res.data)
-                  this.setState({redirect : '1'})
-                  console.log(this.state.redirect)*/
+                  console.log(res.data)
+                  this.setState({redirect : 1})
+                  console.log(this.state.redirect)
               }else{
                 
               }
@@ -65,6 +68,9 @@ export default class Survey extends React.Component {
     
   render()  {
     let survey = this.props.survey;
+    if (this.state.redirect === 1 ){
+        return <Redirect to={"/reponse/"+survey._id} />
+    }
     return (
         <Fragment>
             <h1 class="text-center font-weight-bold blue-color">{survey.title}</h1>
@@ -88,11 +94,17 @@ export default class Survey extends React.Component {
                     })
                 }
             </section>
+
             <button onClick={() => {this.onSubmit()}} type="button" class="btn btn-outline-info button-account" data-mdb-ripple-color="dark">
                   <i class="fas fa-share-square mr-1"></i>
                     Envoyer les réponses
             </button>
-            <span className="span-mandatory">* Question obligatoire</span>        
+            <span className="span-mandatory">* Question obligatoire</span>
+
+            <Link to={"/reponse/"+survey._id} className="text-center btn btn-outline-success button-response mt-5 mb-5" data-mdb-ripple-color="dark">
+                <i class="fas fa-poll mr-1"></i>
+                    Consulter les résultats
+            </Link>        
         </Fragment>        
     );
   }

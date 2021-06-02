@@ -1,0 +1,16 @@
+.button-response {
+    color: #02ac1f !important;
+    background-color: white;
+    border-width: 1px !important;
+    border-color: #02ac1f !important;
+    border-radius: 3em !important;
+}
+
+.button-response:hover {
+    font-weight: bold;
+    color: #02ac1f !important;
+    background-color: white;
+    border-width: 1px !important;
+    border-color: #02ac1f !important;
+    border-radius: 3em !important;
+}
