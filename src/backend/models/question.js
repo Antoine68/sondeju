@@ -12,6 +12,8 @@ const questionSchema = new Schema({
   mandatory : {type: Boolean, required: true}
 },{timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}});
 
+questionSchema.set('toObject', { virtuals: true });
+questionSchema.set('toJSON', { virtuals: true });
 
 questionSchema.virtual('survey', {
     ref: 'Survey',
@@ -26,6 +28,7 @@ questionSchema.virtual('questionResponses', {
   foreignField: 'question',
   justOne: false
 })
+
 
 const Question = mongoose.model('Question', questionSchema);
 
