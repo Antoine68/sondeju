@@ -13,5 +13,17 @@ module.exports = {
         } catch (e) {
             reply.code(500).send(e);
         }
+    },
+
+    getAll: async (request, reply) => {
+        try {
+            const survey_id = request.params.id;
+            console.log(survey_id);
+            const responses = await QuestionResponse.find({ question: survey_id });
+            console.log(responses);
+            reply.code(200).send(responses);
+        } catch (e) {
+            reply.code(500).send(e);
+        }
     }
 };
