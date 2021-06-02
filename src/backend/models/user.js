@@ -10,7 +10,7 @@ const userSchema = new Schema({
   password : {type: String,required:true}
 });
 
-userSchema.virtual('survey', {
+userSchema.virtual('surveys', {
   ref: 'Survey',
   localField: '_id',
   foreignField: 'author',
@@ -18,6 +18,6 @@ userSchema.virtual('survey', {
 })
 
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

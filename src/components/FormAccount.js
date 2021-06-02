@@ -5,7 +5,6 @@ export default class FormAccount extends React.Component{
     constructor (props){
       super(props)
       const user = this.props.user;
-      
       this.state = {
         pseudo : user.pseudo,
         nom : user.name,

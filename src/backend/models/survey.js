@@ -9,7 +9,7 @@ const surveySchema = new Schema({
   questions: [{type: Schema.Types.ObjectId, required: true, ref:'Question'}],
 },{timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 
-surveySchema.virtual('surveyResponse', {
+surveySchema.virtual('surveyResponses', {
   ref: 'SurveyResponse',
   localField: '_id',
   foreignField: 'survey',

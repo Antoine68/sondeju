@@ -2,7 +2,7 @@ const Category = require('../models/category');
 const Option = require('../models/Option');
 const Question = require('../models/Question');
 const Survey = require('../models/Survey');
-const User = require('../models/user');
+const User = require('../models/User');
 
 module.exports = {
   //# create survey
@@ -58,6 +58,16 @@ module.exports = {
       let random = Math.floor(Math.random() * count);
       let survey = await Survey.findOne({}).skip(random);
       reply.code(200).send(survey._id);
+    } catch (e) {
+        reply.code(500).send(e);
+    }
+  },
+  
+  getSurveysByUser: async (request, reply) => {
+    try {
+      let userId = request.params.id; 
+      let surveys = await Survey.find({author: userId}).populate({path:"category"}).sort({created_at:-1});
+      reply.code(200).send(surveys);
     } catch (e) {
         reply.code(500).send(e);
     }

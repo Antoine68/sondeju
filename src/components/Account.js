@@ -6,12 +6,31 @@ import {addConnection} from '../store/actions'
 
 import React from "react";
 import FormAccount from './FormAccount';
+import axios from 'axios';
+import SkeletonCard from './SkeletonCard';
+import CardSurvey from './CardSurvey';
 
 class AccountContent extends React.Component {
 
   constructor (props){
-    super(props)
+    super(props);
+    this.state = {
+      surveys: [],
+      isLoading: true,
+    }
     this.disconnect = this.disconnect.bind(this);
+  }
+  
+  componentDidMount() {
+    axios.get('http://localhost:5000/api/user/'+ this.props.user._id +'/surveys' )
+      .then(res => {
+        let surveys = res.data;
+        console.log(surveys);
+        this.setState({
+          surveys: [...surveys], 
+          isLoading: false,
+        });
+    })
   }
 
   disconnect(){
@@ -42,47 +61,33 @@ class AccountContent extends React.Component {
               Enregistrer
             </button>
           </Link>
-        </div>
-        <h3 class="text-left mt-4 mb-0 pb-0 ml-2">Mes sondages</h3>
-        <hr></hr>
-        <div class="row mw-100 m-0 p-0 mt-3">
-          <div class="col-lg-4 col-md-12 mt-3 mb-3">
-            <div class="card text-center">
-              <div class="card-header bg-white">
-                Catégorie
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Titre du sondage</h5>
-                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary bg-button">Consulter</button>
-              </div>
-              <div class="card-footer text-muted bg-white">
-                Durée : 2 min
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12 mt-3 mb-3">
-            <div class="card text-center">
-              <div class="card-header bg-white">
-                Catégorie
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Titre du sondage</h5>
-                <p class="card-text">Bla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blBla bla bla Bla bla bla Bla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla blaBla bla bl</p>
-                <button href="#" class="btn btn-primary bg-button">Consulter</button>
-              </div>
-              <div class="card-footer text-muted bg-white">
-                Durée : 2 min
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="text-center">
           <button type="button" onClick={this.disconnect} class="btn btn-outline-danger button-disconnect mt-5 mb-5" data-mdb-ripple-color="dark">
           <i class="fas fa-times mr-1"></i>
                 Se déconnecter
           </button>
         </div>
+        <h3 class="text-left mt-4 mb-0 pb-0 ml-2">Mes sondages ({this.state.surveys.length})</h3>
+        <hr></hr>
+        {
+          (() => {
+            if(this.state.surveys.length === 0 && this.state.isLoading) {
+              return(
+                  <div class="row mw-100 m-0 p-0 mt-3">
+                    <SkeletonCard /><SkeletonCard /><SkeletonCard /> 
+                  </div>
+              );
+            }
+            return (
+              <div class="row mw-100 m-0 p-0 mt-3">
+                {
+                  this.state.surveys.map((survey, index) => {
+                    return <CardSurvey key={index} survey={survey}/>
+                  })
+                }
+              </div>
+            );
+          })()
+        }
       </div>
     );
   }

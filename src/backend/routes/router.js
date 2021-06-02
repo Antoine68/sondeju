@@ -35,4 +35,6 @@ module.exports = (app) => {
     
     //response
     app.post('/api/survey/response', responseController.create);
+    
+    app.get('/api/user/:id/surveys', surveyController.getSurveysByUser);
   };
