@@ -19,10 +19,8 @@ module.exports = {
     getAll: async (request, reply) => {
         try {
             const survey_id = request.params.id;
-            console.log(survey_id);
             const responses = await Survey.find({_id: survey_id}).populate({path:"questions", populate: {path :"questionResponses", model: "QuestionResponse"}});
-            console.log(responses);
-            reply.code(200).send(responses);
+            reply.code(200).send(responses[0].questions);
         } catch (e) {
             reply.code(500).send(e);
         }

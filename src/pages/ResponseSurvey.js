@@ -8,7 +8,9 @@ import ResponseRadio from "../components/Response/ResponseRadio"
 import ResponseCheckbox from "../components/Response/ResponseCheckbox"
 import ResponseSelect from "../components/Response/ResponseSelect"
 import ResponseRange from "../components/Response/ResponseRange"
+import Response from "../components/Response"
 import axios from "axios";
+import { Fragment } from 'react';
 
 export default class ResponseSurvey  extends React.Component {
 
@@ -16,7 +18,7 @@ export default class ResponseSurvey  extends React.Component {
         super(props);
         this.state = {
           redirect:'0',
-          responses:[]
+          responses: []
         }
         this.typeConverter = {
           "short" : {initRange : null, component: <ResponseInput/>},
@@ -36,16 +38,17 @@ export default class ResponseSurvey  extends React.Component {
     loadResponses(id) {
         axios.get('http://localhost:5000/api/response/'+id)
         .then(res => {
-            let responses = res.data;
+            let result = res.data;
+            console.log(result)
             this.setState({ 
-                responses: responses,
+                responses: result
             });
+            console.log(this.state.responses)
         })
     }
 
     render() {
     let id = this.props.match.params.id;
-    console.log(this.state.responses);
       return (
           <Layout>
             <Breadcrumb actual={"Réponse"} links={[{url: "/", name: "Accueil"}, {url: "/sondage/"+ id, name: "Sondage"}]} />
@@ -54,7 +57,9 @@ export default class ResponseSurvey  extends React.Component {
             <h1 class="text-center font-weight-bold blue-color">Réponses</h1>
             {
                 this.state.responses.map((response, index) => {
-                    return(<div>{{response}}</div>);
+                    return (
+                        <Response key={index} response={response} />
+                    );
                 })
             }
                 
