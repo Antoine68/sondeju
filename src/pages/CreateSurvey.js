@@ -206,7 +206,7 @@ export default class CreateSurvey extends React.Component {
   
   render()  {
     if(this.state.redirect == '1'){
-      return <Redirect to="/" />
+      return <Redirect to={{ pathname:"/",state:{survey_created: 1} }} />
     }    
     return (
       <Layout>
