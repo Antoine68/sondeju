@@ -1,6 +1,17 @@
-### après avoir cloner le projet faire `npm install` pour mettre à jour les packages
-### faire `npm start` pour lancer le frontend sur le port 3000
-### faire `npm run server` pour lancer le backend sur le port 5000
+
+## Installation et execution
+après avoir cloner le projet faire `npm install` pour installer les dépendances
+
+créer un fichier `.env` et copier le contenu de `.env.example` dedans. Puis ajouter vos credentials :
+
+- `DB_URI=url vers votre base de données mongo`
+
+faire `npm start` pour lancer le frontend sur le port 3000
+
+faire `npm run server` pour lancer le backend sur le port 5000
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
