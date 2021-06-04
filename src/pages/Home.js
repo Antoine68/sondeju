@@ -16,8 +16,7 @@ export default class Home extends React.Component {
     });
   };
 
-  componentDidMount(props){
-    console.log(this.props.location.state)
+  componentDidMount(){
     if(this.props.location.state === undefined){
     }else{
       if(this.props.location.state.survey_created === 1){

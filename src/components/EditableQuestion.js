@@ -2,19 +2,51 @@ import React from "react";
 
 import './../styles/EditableQuestion.css';
 
-import { Input, Select } from 'antd';
 import { Draggable } from "react-beautiful-dnd";
-import { Fragment } from "react";
 
-import { createObjectID, readObjectID,isValidObjectID }  from 'mongo-object-reader';
 import ContentEditable from "react-contenteditable";
-import TextArea from "antd/lib/input/TextArea";
+import EditableInput from "./EditableInput/EditableInput";
+import EditableCheckbox from "./EditableInput/EditableCheckbox";
+import EditableRadio from "./EditableInput/EditableRadio";
+import EditableRange from "./EditableInput/EditableRange";
+import EditableSelect from "./EditableInput/EditableSelect";
+import EditableTextArea from "./EditableInput/EditableTextArea";
 import { Popover } from "antd";
+import { sanitize } from "../utils";
 
 export default class EditableQuestion extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.typeConverter = {
+      "short" : {component: <EditableInput/>},
+      "long" : {component: <EditableTextArea/>},
+      "multiple" : {component:<EditableRadio/>},
+      "unique": {component:<EditableCheckbox/>},
+      "select": { component:<EditableSelect/>},
+      "range": {component:<EditableRange/>}      
+    }
+  }
+  
+  handleTitleChange(event) {
+    let newQuestionTitle = sanitize(event.target.value);
+    this.props.handleChange(this.props.question._id, {...this.props.question,  title: newQuestionTitle});
+  }
+  
+  handleMandatoryChange() {
+    this.props.handleChange(this.props.question._id, {...this.props.question,  mandatory: !this.props.question.mandatory});
+  }
+  
+  handleOptionChange(options) {
+    this.props.handleChange(this.props.question._id, {...this.props.question,  options: options});
+  }
+  
+  handleRangeChange(range) {
+    this.props.handleChange(this.props.question._id, {...this.props.question, range: range});
+  }
         
     
-    render()  {
+  render()  {
       let {question, index} = this.props;
       return (
           <Draggable draggableId={"draggable-"+index} index={index}>
@@ -33,8 +65,14 @@ export default class EditableQuestion extends React.Component {
                    
                   </div>
                   <div className="col-8 card-body">
-                  <ContentEditable placeholder={"Saisir la question"} className="editable-question-title" html={question.title} onChange={(event) => this.props.handleTitleChange(question._id, event)}/>
-                  {this.props.children}
+                  <ContentEditable placeholder={"Saisir la question"} className="editable-question-title" html={question.title} onChange={(event) => this.handleTitleChange(event)}/>
+                    {React.cloneElement(this.typeConverter[this.props.question.type].component, 
+                      {
+                        question : this.props.question,
+                        handleOptionChange: this.handleOptionChange.bind(this),
+                        handleRangeChange : this.handleRangeChange.bind(this)
+                      }
+                    )}
                   </div>
                   <div className="col-2">
                     <div className="toolbar">
@@ -43,7 +81,7 @@ export default class EditableQuestion extends React.Component {
                       <span><i title="Dupliquer"  onClick={() => this.props.handleDuplicate(question._id)} className="fas fa-copy pointer"></i></span>
                       <span>
                         <Popover placement="topLeft" content={"Cliquer pour rendre la question " + (question.mandatory ? "non obligatoire" : "obligatoire")}>
-                          <i className={"fas fa-asterisk pointer " + (question.mandatory ? "mandatory-eqst" : "no-mandatory-eqst")} onClick={() => this.props.handleMandatoryChange(question._id)}></i>
+                          <i className={"fas fa-asterisk pointer " + (question.mandatory ? "mandatory-eqst" : "no-mandatory-eqst")} onClick={() => this.handleMandatoryChange()}></i>
                         </Popover>
                         </span>
                     </div>

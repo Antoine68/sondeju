@@ -20,16 +20,16 @@ export default class EditableOptionManager extends React.Component {
     handleAddOption() {
         this.setState({
             index: this.state.index+1,
-        }, () => this.props.handleOptionChange(this.props.question._id, [...this.props.question.options, {_id: createObjectID(), value: "Choix "+ this.state.index}]));
+        }, () => this.props.handleOptionChange([...this.props.question.options, {_id: createObjectID(), value: "Choix "+ this.state.index}]));
     }
     
     handleDeleteOption(idOption) {
-        this.props.handleOptionChange(this.props.question._id, this.props.question.options.filter(option => option._id !== idOption));
+        this.props.handleOptionChange(this.props.question.options.filter(option => option._id !== idOption));
     }
     
     handleChange(idOption, event) {
         let newOptionValue = sanitize(event.target.value);
-        this.props.handleOptionChange(this.props.question._id, this.props.question.options.map(option => (option._id === idOption ? {_id: option._id, value: newOptionValue} : option)));
+        this.props.handleOptionChange(this.props.question.options.map(option => (option._id === idOption ? {_id: option._id, value: newOptionValue} : option)));
     }
     
     
