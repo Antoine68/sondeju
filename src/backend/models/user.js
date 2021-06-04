@@ -17,7 +17,7 @@ userSchema.virtual('surveys', {
   justOne: false
 })
 
-
+let test = {pseudo: "bob", password:"12345"}
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

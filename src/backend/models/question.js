@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const questionSchema = new Schema({
   title: {type: String, required: true},
   type: {type: String, required: true},
-  options: [{type: Schema.Types.ObjectId, required: true, ref:'Option'}], 
+  options: [{type: Schema.Types.ObjectId, required: false, ref:'Option'}], 
   range: {
     min: {type: Number, min:0, max:9, required: false}, 
     max:{type: Number, min:1, max:10, required: false}
