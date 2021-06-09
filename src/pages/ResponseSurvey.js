@@ -11,6 +11,7 @@ import ResponseRange from "../components/Response/ResponseRange"
 import Response from "../components/Response"
 import axios from "axios";
 import { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class ResponseSurvey  extends React.Component {
 
@@ -58,10 +59,14 @@ export default class ResponseSurvey  extends React.Component {
             {
                 this.state.responses.map((response, index) => {
                     return (
-                        <Response key={index} response={response} />
+                        <Response index={index} response={response} url={id} />
                     );
                 })
             }
+                  <Link to={"/sondage/"+id} className="btn btn-outline-info button-account" data-mdb-ripple-color="dark">
+                <i class="fas fa-poll mr-1"></i>
+                    Retour
+      </Link> 
                 
           </Layout>
       );

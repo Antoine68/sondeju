@@ -9,6 +9,7 @@ import ResponseRadio from "./Response/ResponseRadio";
 import ResponseCheckbox from "./Response/ResponseCheckbox";
 import ResponseSelect from "./Response/ResponseSelect";
 import ResponseRange from "./Response/ResponseRange";
+import { Link } from 'react-router-dom';
 
 export default class Response extends React.Component {
   
