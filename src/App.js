@@ -19,6 +19,7 @@ import SurveyPage from './pages/SurveyPage';
 import RequireAuth from './middleware/RequireAuth';
 import RandomSurvey from './pages/RandomSurvey';
 import ResponseSurvey from './pages/ResponseSurvey';
+import Tutoriel from './pages/Tutoriel';
 
 
 class App extends React.Component {
@@ -36,6 +37,7 @@ class App extends React.Component {
               <Route path="/sondage/:id" component={SurveyPage} />
               <Route path="/sondage-aleatoire" component={RandomSurvey} />
               <Route path="/reponse/:id" component={ResponseSurvey} />
+              <Route path="/tutoriel" component={Tutoriel} />
             </Fragment>
         </BrowserRouter>
       </Provider>

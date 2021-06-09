@@ -42,7 +42,7 @@ export default class Header extends React.Component {
 
               <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center">
               <i class="fas fa-atlas blue-color fa-1x mr-2" aria-hidden="true"></i>
-                <div class="text color-grey hover-texte">Accéder au tutoriel</div>
+                <Link to="/tutoriel"><div class="text color-grey hover-texte">Accéder au tutoriel</div></Link>
               </a>
               
               <a class="ml-5 col-lg-3 text-left mt-1 mb-2 d-flex align-items-center">
