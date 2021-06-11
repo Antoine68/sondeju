@@ -40,11 +40,9 @@ export default class ResponseSurvey  extends React.Component {
         axios.get('http://localhost:5000/api/response/'+id)
         .then(res => {
             let result = res.data;
-            console.log(result)
             this.setState({ 
                 responses: result
             });
-            console.log(this.state.responses)
         })
     }
 

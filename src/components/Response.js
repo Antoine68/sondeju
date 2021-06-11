@@ -28,7 +28,6 @@ export default class Response extends React.Component {
   
   render()  {
     let {response, index} = this.props;
-    console.log(index)
     return (
       <div className="container-question container mw-100 p-0 card" >
       <span className="question-counter">{index+1}</span>
