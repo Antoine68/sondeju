@@ -43,8 +43,8 @@ export default class ResponseCheckbox extends React.Component {
     
   render()  {
     return (
-      <div>
-        <Chart
+      <div class="d-flex justify-content-center">
+        <Chart 
           width={'500px'}
           height={'300px'}
           chartType="PieChart"
@@ -52,6 +52,7 @@ export default class ResponseCheckbox extends React.Component {
           data={this.state.data}
           options={{
             sliceVisibilityThreshold: 0, // 20%
+            colors: ['#0F056B', '#FFBC42','#D81159','#218380','#73D2DE','#C3C3E6'],
           }}
           />
       </div>

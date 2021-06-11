@@ -39,7 +39,7 @@ export default class ResponseRange extends React.Component {
     
   render()  {
     return (
-      <div>
+      <div class="d-flex justify-content-center">
         <Chart
           width={'500px'}
           height={'300px'}
@@ -48,7 +48,8 @@ export default class ResponseRange extends React.Component {
           data={this.state.data}
           options={{
             legend: { position: 'none' },
-            sliceVisibilityThreshold :1
+            sliceVisibilityThreshold :1,
+            colors: ['#0F056B', '#FFBC42','#D81159','#218380','#73D2DE','#C3C3E6'],
           }}
           />
       </div>
