@@ -14,6 +14,9 @@ export default class ResponseRadio extends React.Component {
 
   componentDidMount() {
     let responseData = []
+    this.props.response.options.forEach(element => {
+      responseData.push([element.value,0])
+    });
     let isThere = 0 
     this.props.response.questionResponses.map((response) => {
       isThere = 0
@@ -44,7 +47,7 @@ export default class ResponseRadio extends React.Component {
           loader={<div>Loading Chart</div>}
           data={this.state.data}
           options={{
-            sliceVisibilityThreshold: 0.2, // 20%
+            sliceVisibilityThreshold: 0, // 20%
           }}
           />
       </div>

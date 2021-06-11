@@ -14,12 +14,9 @@ export default class ResponseRange extends React.Component {
 
   componentDidMount() {
     let responseData = []
-    console.log(this.props.response.range.min)
     for (let i = this.props.response.range.min; i <= this.props.response.range.max; i++) {
-      console.log("ok")
       responseData.push([i,0])
     }
-    console.log(responseData)
     let isThere = 0 
     this.props.response.questionResponses.map((response) => {
       isThere = 0
@@ -51,6 +48,7 @@ export default class ResponseRange extends React.Component {
           data={this.state.data}
           options={{
             legend: { position: 'none' },
+            sliceVisibilityThreshold :1
           }}
           />
       </div>

@@ -28,7 +28,8 @@ module.exports = {
                             path : 'options',
                             populate : 'options'
                         }
-                    }
+                    },
+                    {path :"options", model: "Option"}
                 ]
             });
             reply.code(200).send(responses[0].questions);
