@@ -50,7 +50,7 @@ export default class Question extends React.Component {
   }
   
   render()  {
-    let {question, index} = this.props;
+    let {question, index, error} = this.props;
     return (
       <div className="container-question container mw-100 p-0 card" >
       <span className="question-counter">{index+1}</span>
@@ -58,17 +58,28 @@ export default class Question extends React.Component {
         <div className="toolbar-question col-2">
         </div>
         <div className="col-8 card-body">
-        <h3 className="question-title">{question.title} {(question.mandatory ? <span className="span-mandatory">*</span> : "")}</h3>
-          {React.cloneElement(this.typeConverter[question.type].component, 
+          <h3 className="question-title">{question.title} {(question.mandatory ? <span className="span-mandatory">*</span> : "")}</h3>
+            {React.cloneElement(this.typeConverter[question.type].component, 
+              {
+                question : question,
+                response: this.props.response,
+                onTextChange: this.onTextChange.bind(this),
+                onRangeChange: this.onRangeChange.bind(this),
+                onMultipleOptionChange: this.onMultipleOptionChange.bind(this),
+                onUniqueOptionChange: this.onUniqueOptionChange.bind(this),
+              }
+            )}
             {
-              question : question,
-              response: this.props.response,
-              onTextChange: this.onTextChange.bind(this),
-              onRangeChange: this.onRangeChange.bind(this),
-              onMultipleOptionChange: this.onMultipleOptionChange.bind(this),
-              onUniqueOptionChange: this.onUniqueOptionChange.bind(this),
+              (() => {
+                if(error.active) {
+                  return (
+                    <div class="alert alert-danger" role="alert">
+                      {error.text}
+                    </div>  
+                  )
+                }
+              })()
             }
-          )}  
         </div>
         <div className="col-2">
         </div>

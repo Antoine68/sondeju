@@ -3,7 +3,7 @@ import './../styles/Survey.css'
 
 import React from "react";
 import { Link } from 'react-router-dom';
-import { Skeleton } from 'antd';
+import { notification, Skeleton } from 'antd';
 import { Fragment } from 'react';
 import Question from './Question';
 import { breakLineToBr } from '../utils';
@@ -18,12 +18,24 @@ export default class Survey extends React.Component {
         super(props);
         this.state = {
             redirect : 0,
-            responses:this.createAllResponses()
+            responses:this.createAllResponses(),
+            errors: this.createAllErrors()
         }
     }
     
+    createError(question) {
+        return {idQuestion: question._id, text:"", active:false}        
+    }
+    
+    createAllErrors() {
+        let errors = this.props.survey.questions.map((question) => {
+            return this.createError(question)
+        });
+        return errors;
+    }
+    
     createResponse(question) {
-        return {_id: createObjectID(), question: question._id, type: question.type, value: "", options: [], rangeValue: question.range ? question.range.min : 0}
+        return {_id: createObjectID(), question: question._id, type: question.type, value: "", options: [], rangeValue: question.range ? question.range.min : null}
     }
     
     createAllResponses() {
@@ -47,23 +59,62 @@ export default class Survey extends React.Component {
     }
     
     onSubmit() {
-        let data = {...this.state, survey: this.props.survey._id}
-        axios.post('http://localhost:5000/api/survey/response', data)
-          .then(
-            res => {
-              console.log(res.status)
-              if (res.status == 200){
-                  console.log(res.data)
-                  this.setState({redirect : 1})
-                  console.log(this.state.redirect)
-              }else{
-                
-              }
-            }
-          );
-      }
+        
+        if(this.validate()) {
+            let data = {...this.state, survey: this.props.survey._id}
+            axios.post('http://localhost:5000/api/survey/response', data)
+            .then(
+                res => {
+                console.log(res.status)
+                if (res.status == 200){
+                    this.setState({redirect : 1})
+                }else{
+                    notification.error({
+                        message: 'Erreur',
+                        description:
+                          'une erreur c\'est produite',
+                      });
+                }
+                }
+            );
+        } else {
+            notification.error({
+                message: 'Les réponses n\'ont pas été envoyées',
+                description:
+                  'Certains champs contiennent des erreurs',
+            });
+        }
+        
+    }
     
-            
+    getReponseOfQuestion(idQuestion) {
+        return this.state.responses.find(response => response.question === idQuestion);
+    }
+    
+    getErrorOfQuestion(idQuestion) {
+        return this.state.errors.find(error => error.idQuestion === idQuestion);
+    }
+    
+    validate() {
+        let valide = true;
+        let errors = [];
+        this.props.survey.questions.map(question => {
+            let newError = this.getErrorOfQuestion(question._id);
+            newError = {...newError, text: "", active: false}
+            if(question.mandatory) {
+                let response = this.getReponseOfQuestion(question._id);
+                if(response.value === "" && (response.options.length === 0 || response.options[0] === "-1") && response.rangeValue === null) {
+                    valide = false;
+                    newError = {...newError, text: "Cette question est obligatoire", active: true}
+                }
+            }
+            errors.push(newError);
+        })
+        this.setState({
+            errors: errors
+        });
+        return valide;
+    } 
     
     
   render()  {
@@ -89,6 +140,7 @@ export default class Survey extends React.Component {
                                 response={this.getResponseOfQuestion(question._id)} 
                                 index={index}
                                 onChange={this.onResponseChange.bind(this)}
+                                error={this.getErrorOfQuestion(question._id)}
                             />
                         );
                     })
