@@ -58,7 +58,7 @@ export default class EditableQuestion extends React.Component {
               zIndex: snapshot.isDragging ? 99999 : 1,
               backgroundColor: "white",
               }} >
-              <div className="container-question container mw-100 p-0 card" >
+              <div className="container-question container mw-100 p-0 card" tabindex="-1">
                 <span className="question-counter">{index+1}</span>
                 <div className="row pt-3 pb-3">
                   <div className="toolbar-question col-2">

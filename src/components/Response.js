@@ -29,7 +29,7 @@ export default class Response extends React.Component {
   render()  {
     let {response, index} = this.props;
     return (
-      <div className="container-question container mw-100 p-0 card" >
+      <div className="container-question container mw-100 p-0 card" tabindex="-1">
       <span className="question-counter">{index+1}</span>
       <div className="row pt-3 pb-3">
         <div className="toolbar-question col-2">
