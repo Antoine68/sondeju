@@ -17,7 +17,7 @@ export default class Tutoriel  extends React.Component {
 
                 <div class="containe">
                     <div class="row"><h1 class="text-center font-weight-bold blue-color col-12">Tutoriel</h1></div>
-                    <div class="row"><ReactPlayer  class="mt-5 mb-5 col-12 " url='https://www.youtube.com/watch?v=JtMdyRATHuU' /></div>
+                    <div class="row"><ReactPlayer  class="mt-5 mb-5 col-12 " url='https://www.youtube.com/watch?v=_byXrHwN8iQ' /></div>
                 </div>
               </div>
           </Layout>
